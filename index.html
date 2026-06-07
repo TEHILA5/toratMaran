@@ -565,6 +565,7 @@
   </style>
 </head>
 <body>
+  <div id="seasonal-banner" style="display:none;"></div>
 
   <header class="site-header">
     <nav class="navbar">
@@ -606,7 +607,7 @@
       <img src="images/logo-full.png" alt="תורת מרן" class="hero-logo"
            onerror="this.style.display='none'" />
       <h1 class="hero-title">בית המדרש תורת מרן</h1>
-      <p class="hero-subtitle">בית מדרש, כולל הלכה, ובית הוראה – לאור פסקי מרן רבנו עובדיה יוסף זצוק"ל</p>
+      <p class="hero-subtitle"><span data-cms="home_subtitle">בית מדרש, כולל הלכה, ובית הוראה – לאור פסקי מרן רבנו עובדיה יוסף זצוק"ל</span></p>
       <div class="hero-leadership">
         בראשות הרב שמעון ללוש שליט"א<br/>
         בנשיאות מרן הראש"ל רבנו יצחק יוסף שליט"א
@@ -632,37 +633,37 @@
         <div class="feature-card">
           <div class="feature-icon">📚</div>
           <h3>כולל אברכים "חכמת שלמה"</h3>
-          <p>כולל עיוני להכשרת מורי הוראה ופוסקי הלכה, בעיון שיטתי מסוגיות הש"ס ועד פוסקי דורנו.</p>
+          <p data-cms="home_card_kollel">כולל עיוני להכשרת מורי הוראה ופוסקי הלכה, בעיון שיטתי מסוגיות הש"ס ועד פוסקי דורנו.</p>
           <a href="pages/kollel.html" class="card-link">לפרטים נוספים ←</a>
         </div>
         <div class="feature-card">
           <div class="feature-icon">⚖️</div>
           <h3>בית הוראה "תורת מרן"</h3>
-          <p>מענה הלכתי לציבור הרחב בענייני טהרה והלכה למעשה, בטלפון ובפועל.</p>
+          <p data-cms="home_card_beit_horaah">מענה הלכתי לציבור הרחב בענייני טהרה והלכה למעשה, בטלפון ובפועל.</p>
           <a href="pages/beit-horaah.html" class="card-link">לפרטים נוספים ←</a>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🎥</div>
           <h3>שיעורי תורה</h3>
-          <p>שיעורים ודרשות בכולל, בקו הלכה, בערוץ יוטיוב ובקהילות – צפו בכל עת.</p>
+          <p data-cms="home_card_shiurim">שיעורים ודרשות בכולל, בקו הלכה, בערוץ יוטיוב ובקהילות – צפו בכל עת.</p>
           <a href="pages/shiurim.html" class="card-link">לצפייה ←</a>
         </div>
         <div class="feature-card">
           <div class="feature-icon">📰</div>
           <h3>עלונים הלכתיים</h3>
-          <p>עלון "אור השבת / תורת מרן" – שיעורי ותכניות ההלכה השבועיים לעלונים ומאמרים.</p>
+          <p data-cms="home_card_alonot">עלון "אור השבת / תורת מרן" – שיעורי ותכניות ההלכה השבועיים לעלונים ומאמרים.</p>
           <a href="pages/alonot.html" class="card-link">לעלונים ←</a>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🧺</div>
           <h3>סלים לחגים</h3>
-          <p>חלוקת סלים לחגי תשרי, קמחא דפסחא למשפחות אברכים ונזקקים.</p>
+          <p data-cms="home_card_salim">חלוקת סלים לחגי תשרי, קמחא דפסחא למשפחות אברכים ונזקקים.</p>
           <a href="pages/contact.html" class="card-link">לפרטים ←</a>
         </div>
         <div class="feature-card">
           <div class="feature-icon">🤝</div>
           <h3>שותפות ותמיכה</h3>
-          <p>תומכי אברכים, שותפות בבית ההוראה ובהפצת עלונים, נציב יום ועוד.</p>
+          <p data-cms="home_card_donation">תומכי אברכים, שותפות בבית ההוראה ובהפצת עלונים, נציב יום ועוד.</p>
           <a href="pages/donations.html" class="card-link">לשותפות ←</a>
         </div>
       </div>
@@ -755,7 +756,6 @@
         <a href="pages/donations.html">תרומות</a>
         <a href="pages/contact.html">צור קשר</a>
       </div>
-            <p class="footer-copy" style="margin-top:8px; font-size:12px; color:rgba(255,255,255,0.45);">כל הזכויות שמורות לתהילה אלון | <a href="mailto:tehila54345@gmail.com" style="color:rgba(255,255,255,0.45);">tehila54345@gmail.com</a></p>
       <p class="footer-copy">
         טלפון: 03-313-7547 |
         <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a>
@@ -841,5 +841,6 @@
   loadFeaturedVideo();
   </script>
 
+  <script src="cms.js"></script>
 </body>
 </html>
