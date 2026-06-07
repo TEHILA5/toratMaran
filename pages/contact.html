@@ -78,8 +78,11 @@
         </div>
 
         <div class="contact-form">
-          <form id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-            <input type="hidden" name="_subject" value="פנייה חדשה מאתר תורת מרן" />
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="9ec4023c-e585-45e2-8955-ff626daed9d0" />
+            <input type="hidden" name="subject" value="פנייה חדשה מאתר תורת מרן" />
+            <input type="hidden" name="from_name" value="אתר תורת מרן" />
+            <input type="hidden" name="redirect" value="false" />
             <div class="form-group">
               <label for="name">שם מלא *</label>
               <input type="text" id="name" name="name" placeholder="ישראל ישראלי" required />
@@ -147,7 +150,8 @@
           body: new FormData(form),
           headers: { 'Accept': 'application/json' }
         });
-        if (res.ok) {
+        const data = await res.json();
+        if (data.success) {
           form.reset();
           document.getElementById('successMsg').style.display = 'block';
         } else {
