@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>אודות – בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .about-section { padding: 70px 24px; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .about-logo-wrap {
+      background: var(--navy-dark);
+      border-radius: 16px;
+      padding: 32px;
+      text-align: center;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .about-logo-wrap img { width: 100%; max-width: 260px; height: auto; }
+    .about-rabbi {
+      margin-top: 20px;
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding-top: 18px;
+    }
+    .about-rabbi img {
+      width: 110px; height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      margin-bottom: 10px;
+    }
+    .about-rabbi p {
+      color: var(--gold-light);
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .about-text h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 30px;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .about-text p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.85;
+      margin-bottom: 16px;
+    }
+    .activities-list {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .activity-row {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 16px 18px;
+      border-right: 4px solid var(--gold);
+    }
+    .activity-row .icon { font-size: 22px; flex-shrink: 0; margin-top: 2px; }
+    .activity-row h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+    .activity-row p { font-size: 13px; color: var(--text-light); line-height: 1.6; margin: 0; }
+    .leadership-section {
+      background: var(--navy-dark);
+      border-radius: 16px;
+      padding: 40px 36px;
+      margin-top: 48px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .leadership-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 24px;
+      color: var(--gold-light);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .leaders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    .leader-card {
+      text-align: center;
+      background: rgba(255,255,255,0.04);
+      border-radius: 12px;
+      padding: 24px 20px;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .leader-card img {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--gold);
+      margin-bottom: 14px;
+    }
+    .leader-placeholder {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.1);
+      border: 3px solid var(--gold);
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+    }
+    .leader-card h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 17px;
+      color: var(--gold-light);
+      margin-bottom: 6px;
+    }
+    .leader-card p { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html" class="active">אודות</a></li>
+        <li><a href="kollel.html">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html">בית הוראה</a></li>
+        <li><a href="shiurim.html">שיעורי תורה</a></li>
+        <li><a href="alonot.html">עלונים</a></li>
+        <li><a href="donations.html">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>אודות המרכז</h1>
+    <p>מגדלור של תורה, הלכה והוראה לדורנו – בעיר אלעד ובסניפים נוספים בארץ</p>
+  </div>
+
+  <section class="about-section">
+    <div class="container">
+
+      <div class="about-grid">
+        <div class="about-logo-wrap">
+          <img src="../images/logo-full.png" alt="תורת מרן" onerror="this.src='../images/logo.png'" />
+          <div class="about-rabbi">
+            <img src="../images/rabbi.png" alt="הרב שמעון ללוש" onerror="this.style.display='none'" />
+            <p>
+              בראשות<br/>
+              <strong>הרב שמעון ללוש שליט"א</strong><br/>
+              <br/>
+              בנשיאות<br/>
+              <strong>מרן הראש"ל רבנו יצחק יוסף שליט"א</strong>
+            </p>
+          </div>
+        </div>
+
+        <div class="about-text">
+          <h2>אודות בית המדרש "תורת מרן"</h2>
+          <p>
+            המרכז נוסד מתוך מטרה ברורה: להקים מגדלור של תורה, הלכה, והוראה לדורנו, תוך הליכה
+            בדרך המסורה של מרן הרב עובדיה יוסף זצוק"ל ובנו מרן הראש"ל שליט"א.
+          </p>
+          <p>
+            אנו פועלים בעיר אלעד ובסניפים נוספים בארץ, להעמיד תלמידי חכמים מורי הוראה,
+            להדריך את הציבור בהלכה למעשה, ולהפיץ תורה בקרב העם.
+          </p>
+          <p>
+            כל פעילותינו לשם שמים – להפצת דעת תורה ופסיקה הלכתית נאמנה, מתוך שפה מכובדת,
+            נגישה וברורה.
+          </p>
+
+          <div class="activities-list">
+            <div class="activity-row">
+              <div class="icon">📚</div>
+              <div>
+                <h4>כולל אברכים "חכמת שלמה"</h4>
+                <p>כולל עיוני להכשרת מורי הוראה ופוסקים, בעיון שיטתי מסוגיות הש"ס ועד פוסקי דורנו.</p>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="icon">⚖️</div>
+              <div>
+                <h4>בית הוראה "תורת מרן"</h4>
+                <p>מענה הלכתי לציבור הרחב בענייני טהרה והלכה למעשה, בטלפון ובפועל.</p>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="icon">🎥</div>
+              <div>
+                <h4>שיעורים ודרשות</h4>
+                <p>בכולל, בקו הלכה, בערוץ יוטיוב ובקהילות – נגישים לכל.</p>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="icon">📰</div>
+              <div>
+                <h4>עלונים הלכתיים "אור השבת / תורת מרן"</h4>
+                <p>עיבוד שיעורי ותכניות ההלכה השבועיים לעלונים ומאמרים.</p>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="icon">📚</div>
+              <div>
+                <h4>ספרים ופרסומים</h4>
+                <p>ספרים תורניים המבוססים על דרכו של מרן והעלונים שיצאו לאור.</p>
+              </div>
+            </div>
+            <div class="activity-row">
+              <div class="icon">🧺</div>
+              <div>
+                <h4>סלים לחגים – קמחא דפסחא</h4>
+                <p>חלוקת סלים לחגי תשרי, קמחא דפסחא, למשפחות אברכים ונזקקים.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="leadership-section">
+        <h3>הנהגת המרכז</h3>
+        <div class="leaders-grid">
+          <div class="leader-card">
+            <img src="../images/rabbi-rosh.png" alt="מרן הראש"ל" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="leader-placeholder" style="display:none;">
+                <img src="../images/hh.png" alt="מרן הראש"ל" />
+            </div>
+            <h4>מרן הראש"ל רבנו יצחק יוסף שליט"א</h4>
+            <p>נשיא המרכז<br/>ראשון לציון ונשיא מועצת הרבנות הראשית</p>
+          </div>
+          <div class="leader-card">
+            <img src="../images/rabbi-rosh-kollel.png" alt="הרב שמעון ללוש" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="leader-placeholder" style="display:none;">
+                <img src="../images/h.jpg" alt="הרב שמעון ללוש" />
+            </div>
+            <h4>הרב שמעון ללוש שליט"א</h4>
+            <p>ראש המרכז<br/>ראש הכולל ומרא דאתרא</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container">
+      <blockquote>
+        "ואהבת לרעך כמוך"
+        <cite>– ויקרא יט, יח</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>
