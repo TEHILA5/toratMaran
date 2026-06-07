@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>כולל אברכים חכמת שלמה – בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .kollel-section { padding: 70px 24px; }
+    .kollel-intro {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+    .kollel-intro-text h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 30px;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .kollel-intro-text p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .kollel-sidebar {
+      background: var(--navy-dark);
+      border-radius: 16px;
+      padding: 30px 24px;
+      border: 1px solid rgba(201,168,76,0.25);
+    }
+    .kollel-sidebar h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 18px;
+      color: var(--gold-light);
+      margin-bottom: 18px;
+      text-align: center;
+    }
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+    }
+    .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .info-row .icon { font-size: 20px; flex-shrink: 0; margin-top: 2px; }
+    .info-row .label { font-size: 11px; color: var(--gold); margin-bottom: 3px; font-weight: 600; letter-spacing: 0.05em; }
+    .info-row .val { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+
+    .pillars-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 48px;
+      border: 1px solid rgba(201,168,76,0.12);
+      box-shadow: 0 4px 24px rgba(58,42,16,0.06);
+    }
+    .pillars-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+    .pillar-card {
+      background: var(--cream);
+      border-radius: 12px;
+      padding: 24px 20px;
+      border-right: 4px solid var(--gold);
+      text-align: center;
+    }
+    .pillar-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .pillar-card h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .pillar-card p { font-size: 13px; color: var(--text-light); line-height: 1.65; }
+
+    .schedule-section {
+      background: var(--navy-dark);
+      border-radius: 20px;
+      padding: 44px 40px;
+      margin-bottom: 48px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .schedule-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 22px;
+      color: var(--gold-light);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .schedule-item {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 18px 16px;
+      border: 1px solid rgba(201,168,76,0.15);
+      text-align: center;
+    }
+    .schedule-item .time {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 22px;
+      color: var(--gold);
+      font-weight: 700;
+    }
+    .schedule-item .session { font-size: 13px; color: rgba(255,255,255,0.7); margin-top: 6px; line-height: 1.5; }
+
+    .join-section {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+    }
+    .join-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 26px;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+    }
+    .join-section p { font-size: 15px; color: rgba(15,26,48,0.75); margin-bottom: 28px; line-height: 1.7; }
+    .btn-dark {
+      background: var(--navy-dark);
+      color: var(--gold-light);
+      text-decoration: none;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      display: inline-block;
+      transition: all 0.22s;
+    }
+    .btn-dark:hover { background: var(--navy); transform: translateY(-2px); }
+
+    @media (max-width: 768px) {
+      .kollel-intro { grid-template-columns: 1fr; }
+      .pillars-section, .schedule-section, .join-section { padding: 28px 20px; }
+    }
+  </style>
+
+  <style>
+  /* ── PAGE HERO WITH DYNAMIC IMAGE ── */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(15,26,48,0.88) 0%,
+      rgba(26,39,68,0.82) 60%,
+      rgba(36,48,87,0.75) 100%);
+    z-index: 0;
+  }
+  .page-hero h1, .page-hero p { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="kollel.html" class="active">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html">בית הוראה</a></li>
+        <li><a href="shiurim.html">שיעורי תורה</a></li>
+        <li><a href="alonot.html">עלונים</a></li>
+        <li><a href="donations.html">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>כולל אברכים "חכמת שלמה"</h1>
+    <p>מכשירים את הדור הבא של מורי ההוראה ופוסקי ההלכה בישראל</p>
+  </div>
+
+  <section class="kollel-section">
+    <div class="container">
+
+      <div class="kollel-intro">
+        <div class="kollel-intro-text">
+          <h2>אודות הכולל</h2>
+          <p>
+            כולל האברכים "חכמת שלמה" הוא עמוד השדרה של מרכז בית המדרש "תורת מרן", ונוסד כדי להעמיד
+            דור של תלמידי חכמים פוסקי הלכה ומורי הוראות בישראל.
+          </p>
+          <p>
+            הלימוד בכולל מתבצע בעיון שיטתי בכל נושא הלכתי – החל מסוגיות הש"ס, דרך שיטות הראשונים,
+            משנת הבית יוסף והשלחן ערוך, ועד פוסקי דורנו ובראשם מרן הרב עובדיה יוסף זצוק"ל.
+          </p>
+          <p>
+            השיעורים נמסרים על ידי ראש הכולל ואברכים מצוינים, עם דגש על כללי פסיקה, בירור שורשי
+            ההלכה, ויישום ברור להלכה למעשה.
+          </p>
+          <p>
+            הכולל קרוי על שמו של המנוח שלמה אסולין ז"ל, ומתקיים בישוב אלעד.
+          </p>
+          <p>
+            מטרת הכולל – להעמיד תלמידי חכמים המסוגלים לעמוד בשער ההוראה, לפסוק בבירור ובאחריות,
+            להמשיך את שיטת מרן, ולשמש מורי הוראה בישראל.
+          </p>
+        </div>
+
+        <div class="kollel-sidebar">
+          <h3>פרטי הכולל</h3>
+          <div class="info-row">
+            <div class="icon">📍</div>
+            <div>
+              <div class="label">מיקום</div>
+              <div class="val">עיר אלעד</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon">👤</div>
+            <div>
+              <div class="label">ראש הכולל</div>
+              <div class="val">הרב שמעון ללוש שליט"א</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon">👑</div>
+            <div>
+              <div class="label">נשיא הכולל</div>
+              <div class="val">מרן הראש"ל רבנו יצחק יוסף שליט"א</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon">📞</div>
+            <div>
+              <div class="label">יצירת קשר</div>
+              <div class="val">03-313-7547</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="icon">🤝</div>
+            <div>
+              <div class="label">שותפות בכולל</div>
+              <div class="val"><a href="donations.html" style="color:var(--gold-light);">לתרומה ולשותפות ←</a></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pillars-section">
+        <h3>עמודי הלימוד בכולל</h3>
+        <div class="pillars-grid">
+          <div class="pillar-card">
+            <div class="icon">📖</div>
+            <h4>סוגיות הש"ס</h4>
+            <p>לימוד עיוני שיטתי בסוגיות הגמרא, בעיון מעמיק תוך הבנת הסוגיה לעומקה.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="icon">🏛️</div>
+            <h4>שיטות הראשונים</h4>
+            <p>בירור שיטות הראשונים וצלילה לשורשי ההלכה בספרות הפסיקה הקלאסית.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="icon">⚖️</div>
+            <h4>שלחן ערוך ובית יוסף</h4>
+            <p>לימוד שיטתי של משנת מרן הבית יוסף והשלחן ערוך – יסוד הפסיקה הספרדית.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="icon">✍️</div>
+            <h4>פוסקי דורנו</h4>
+            <p>עיון בפסיקת מרן הרב עובדיה יוסף זצוק"ל ויישום הלכה למעשה לנושאי זמננו.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="icon">🎓</div>
+            <h4>כללי פסיקה</h4>
+            <p>הכשרת האברכים בכלי הפסיקה וההוראה – לדעת איך ומתי לפסוק בכל שאלה.</p>
+          </div>
+          <div class="pillar-card">
+            <div class="icon">🗣️</div>
+            <h4>שיעורים ודרשות</h4>
+            <p>שיעורים שבועיים, שיחות ומפגשים לחיזוק הרמה הרוחנית והתורנית של האברכים.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="schedule-section">
+        <h3>סדר הלימוד בכולל</h3>
+        <div class="schedule-grid">
+          <div class="schedule-item">
+            <div class="time">שחרית</div>
+            <div class="session">תפילה ולימוד בוקר<br/>סדר ראשון</div>
+          </div>
+          <div class="schedule-item">
+            <div class="time">סדר שני</div>
+            <div class="session">לימוד עיוני בסוגיה<br/>שיעור ראש הכולל</div>
+          </div>
+          <div class="schedule-item">
+            <div class="time">שיעור הלכה</div>
+            <div class="session">שיעור הלכה שבועי<br/>לכלל הציבור</div>
+          </div>
+          <div class="schedule-item">
+            <div class="time">סדר שלישי</div>
+            <div class="session">חזרה על הנלמד<br/>ועיון עצמי</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="join-section">
+        <h3>הצטרפו לכולל</h3>
+        <p>
+          מעוניינים ללמוד בכולל? רוצים לתמוך בהכשרת מורי ההוראה הבאים? צרו קשר ונשמח לענות על כל שאלה.
+        </p>
+        <a href="contact.html" class="btn-dark" style="margin-left: 12px;">צרו קשר ←</a>
+        <a href="donations.html" class="btn-dark">שותפות בתורה ←</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container">
+      <blockquote>
+        "כי הם חיינו ואורך ימינו"
+        <cite>– תפילת ערבית</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+  // ═══════════════════════════════════════════
+  //  תמונת hero דינמית מ-Google Sheets (גיליון images)
+  //  עמודות: page(0) imageUrl(1) alt(2)
+  //  gid של גיליון images – יש לעדכן אחרי יצירתו
+  // ═══════════════════════════════════════════
+  (async function() {
+    const PAGE_KEY  = 'kollel';
+    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=IMAGES_GID&single=true&output=csv';
+
+    function parseCSVLine(line) {
+      const result = []; let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+        else if (ch===',' && !inQ) { result.push(cur); cur=''; }
+        else cur += ch;
+      }
+      result.push(cur); return result;
+    }
+
+    try {
+      const res  = await fetch(IMAGES_CSV + '&t=' + Date.now());
+      if (!res.ok) return;
+      const lines = (await res.text()).trim().split('\n');
+      const row   = lines.slice(1)
+                         .map(l => parseCSVLine(l))
+                         .find(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY);
+      if (!row) return;
+      const url = (row[1]||'').trim();
+      if (!url) return;
+      const hero = document.querySelector('.page-hero');
+      if (hero) hero.style.backgroundImage = `url('${url}')`;
+    } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
+  })();
+  </script>
+
+</body>
+</html>

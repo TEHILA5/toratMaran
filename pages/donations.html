@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>תרומות ושותפות – בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .donations-section { padding: 70px 24px; }
+
+    .donations-intro {
+      max-width: 780px;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+    .donations-intro h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .donations-intro p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.9;
+    }
+
+    /* Main donate CTA */
+    .donate-cta-wrap {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      border-radius: 24px;
+      padding: 56px 48px;
+      text-align: center;
+      margin-bottom: 60px;
+      border: 1px solid rgba(201,168,76,0.3);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.2);
+    }
+    .donate-cta-wrap h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(24px, 4vw, 36px);
+      color: var(--gold-light);
+      margin-bottom: 14px;
+      font-weight: 900;
+    }
+    .donate-cta-wrap p {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      margin-bottom: 36px;
+      line-height: 1.8;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .donate-btn-big {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--navy-dark);
+      text-decoration: none;
+      padding: 18px 56px;
+      border-radius: 50px;
+      font-size: 17px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      transition: all 0.22s;
+      box-shadow: 0 6px 28px rgba(201,168,76,0.4);
+    }
+    .donate-btn-big:hover { transform: translateY(-3px); box-shadow: 0 12px 36px rgba(201,168,76,0.5); }
+    .secure-label {
+      margin-top: 16px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+    }
+    .secure-label span { color: var(--gold-dark); }
+
+    /* Partnership options */
+    .partner-title {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .partner-title h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 26px;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .partner-title p { color: var(--text-light); font-size: 14px; }
+
+    .partners-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-bottom: 60px;
+    }
+    .partner-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 32px 26px;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: 0 2px 16px rgba(58,42,16,0.06);
+      transition: all 0.22s;
+      position: relative;
+      overflow: hidden;
+    }
+    .partner-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold-dark), var(--gold));
+    }
+    .partner-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(58,42,16,0.1); }
+    .partner-card .icon { font-size: 30px; margin-bottom: 14px; }
+    .partner-card h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 18px;
+      color: var(--navy);
+      margin-bottom: 10px;
+      font-weight: 700;
+    }
+    .partner-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; margin-bottom: 18px; }
+    .partner-card .card-link {
+      font-size: 13px;
+      color: var(--gold-dark);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .partner-card .card-link:hover { color: var(--gold); }
+
+    /* Holiday baskets */
+    .holiday-section {
+      background: var(--cream-dark, #f0e8d0);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 48px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .holiday-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 24px;
+      color: var(--navy);
+      margin-bottom: 12px;
+      text-align: center;
+    }
+    .holiday-section p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.85;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 28px;
+    }
+    .holiday-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+    .badge {
+      background: var(--white);
+      border: 1.5px solid rgba(201,168,76,0.4);
+      border-radius: 20px;
+      padding: 8px 18px;
+      font-size: 13px;
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* Tax note */
+    .tax-note {
+      background: rgba(201,168,76,0.08);
+      border: 1px solid rgba(201,168,76,0.25);
+      border-radius: 12px;
+      padding: 20px 24px;
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .tax-note p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+    .tax-note a { color: var(--gold-dark); }
+
+    @media (max-width: 768px) {
+      .donate-cta-wrap { padding: 32px 20px; }
+      .holiday-section { padding: 28px 20px; }
+    }
+  </style>
+
+  <style>
+  /* ── PAGE HERO WITH DYNAMIC IMAGE ── */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(15,26,48,0.88) 0%,
+      rgba(26,39,68,0.82) 60%,
+      rgba(36,48,87,0.75) 100%);
+    z-index: 0;
+  }
+  .page-hero h1, .page-hero p { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="kollel.html">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html">בית הוראה</a></li>
+        <li><a href="shiurim.html">שיעורי תורה</a></li>
+        <li><a href="alonot.html">עלונים</a></li>
+        <li><a href="donations.html" class="active">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>תרומות ושותפות בתורה</h1>
+    <p>כל תרומה – שותפות אמיתית בהפצת תורה והלכה לציבור הרחב</p>
+  </div>
+
+  <section class="donations-section">
+    <div class="container">
+
+      <div class="donations-intro">
+        <h2>היו שותפים במפעל התורה</h2>
+        <p>
+          בית המדרש "תורת מרן" מתקיים בזכות תורמיו הנדיבים. כל תרומה, קטנה כגדולה,
+          מאפשרת לנו להמשיך ולהפיץ תורה, לתמוך באברכים לומדים, לפתוח שאלות הלכה לציבור,
+          ולהגיע לאלפי משפחות בישראל ובעולם.
+        </p>
+      </div>
+
+      <div class="donate-cta-wrap">
+        <h2>תרמו עכשיו – בצורה מאובטחת</h2>
+        <p>
+          מערכת התרומות פועלת דרך "נדרים פלוס" – מערכת סליקה מוכרת ומאובטחת.
+          ניתן לתרום חד-פעמי או להגדיר תרומה קבועה.
+        </p>
+        <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862"
+           target="_blank" class="donate-btn-big">
+          💳 לתרומה מאובטחת – נדרים פלוס ←
+        </a>
+        <div class="secure-label">🔒 תשלום מאובטח | <span>ניכוי מס לפי סעיף 46</span></div>
+      </div>
+
+      <div class="partner-title">
+        <h3>אפשרויות שותפות</h3>
+        <p>בחרו את צורת השותפות המתאימה לכם</p>
+      </div>
+
+      <div class="partners-grid">
+        <div class="partner-card">
+          <div class="icon">📚</div>
+          <h4>תומך אברכים</h4>
+          <p>שותפות חודשית לתמיכה ישירה בלימוד של אברך בכולל. זכות שכר התורה כולה.</p>
+          <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862" target="_blank" class="card-link">לפרטים ←</a>
+        </div>
+        <div class="partner-card">
+          <div class="icon">⚖️</div>
+          <h4>שותף בית הוראה</h4>
+          <p>תמיכה בפעילות בית ההוראה ובהכשרת מורי ההוראה – כל שאלה שנענית בזכותך.</p>
+          <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862" target="_blank" class="card-link">לפרטים ←</a>
+        </div>
+        <div class="partner-card">
+          <div class="icon">📰</div>
+          <h4>שותף הפצת עלונים</h4>
+          <p>ממן את הדפסת העלון השבועי והפצתו לקהילות – מאות משפחות מתברכות בכל שבת.</p>
+          <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862" target="_blank" class="card-link">לפרטים ←</a>
+        </div>
+        <div class="partner-card">
+          <div class="icon">🕯️</div>
+          <h4>נציב יום</h4>
+          <p>לעילוי נשמת אהוב, לרפואה, לזרע של קיימא – הגדל לימוד ביום מסוים לזכרך.</p>
+          <a href="contact.html" class="card-link">צרו קשר ←</a>
+        </div>
+        <div class="partner-card">
+          <div class="icon">📖</div>
+          <h4>הוצאת ספר / עלון</h4>
+          <p>מימון הוצאת ספר תורני או קובץ עלונים לזכרו של יקיר – פרסום לדורות.</p>
+          <a href="contact.html" class="card-link">צרו קשר ←</a>
+        </div>
+        <div class="partner-card">
+          <div class="icon">🤝</div>
+          <h4>תרומה חד-פעמית</h4>
+          <p>כל סכום מתקבל בברכה ומועבר ישירות לפעילות המרכז – ללא עלויות מיותרות.</p>
+          <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862" target="_blank" class="card-link">לתרומה ←</a>
+        </div>
+      </div>
+
+      <div class="holiday-section">
+        <h3>🧺 סלים לחגים – קמחא דפסחא</h3>
+        <p>
+          בכל עונת חג, מרכז "תורת מרן" מחלק סלי מזון ומוצרי חג למשפחות אברכים ולנזקקים.
+          כל תרומה לפרויקט זה מגיעה ישירות לשולחן משפחות ברוכות ילדים.
+        </p>
+        <div class="holiday-badges">
+          <span class="badge">🍷 סלי חגי תשרי</span>
+          <span class="badge">🫓 קמחא דפסחא</span>
+          <span class="badge">🕎 חנוכה</span>
+          <span class="badge">🎁 מתנות לאברכים</span>
+        </div>
+        <div style="text-align:center;">
+          <a href="contact.html" class="btn-primary">פרטים נוספים ←</a>
+        </div>
+      </div>
+
+      <div class="tax-note">
+        <p>
+          בית המדרש "תורת מרן" הינו עמותה רשומה בישראל. תרומות זכאיות לניכוי מס לפי סעיף 46.
+          <br/>לפרטי העמותה: <a href="https://www.guidestar.org.il/organization/580382000" target="_blank">מספר עמותה 580382000 ←</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container">
+      <blockquote>
+        "כל המסייע לדברי תורה – מעלה עליו הכתוב כאילו קיבלה מהר סיני"
+        <cite>– מדרש תנחומא</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+  // ═══════════════════════════════════════════
+  //  תמונת hero דינמית מ-Google Sheets (גיליון images)
+  //  עמודות: page(0) imageUrl(1) alt(2)
+  //  gid של גיליון images – יש לעדכן אחרי יצירתו
+  // ═══════════════════════════════════════════
+  (async function() {
+    const PAGE_KEY  = 'donations';
+    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=IMAGES_GID&single=true&output=csv';
+
+    function parseCSVLine(line) {
+      const result = []; let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+        else if (ch===',' && !inQ) { result.push(cur); cur=''; }
+        else cur += ch;
+      }
+      result.push(cur); return result;
+    }
+
+    try {
+      const res  = await fetch(IMAGES_CSV + '&t=' + Date.now());
+      if (!res.ok) return;
+      const lines = (await res.text()).trim().split('\n');
+      const row   = lines.slice(1)
+                         .map(l => parseCSVLine(l))
+                         .find(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY);
+      if (!row) return;
+      const url = (row[1]||'').trim();
+      if (!url) return;
+      const hero = document.querySelector('.page-hero');
+      if (hero) hero.style.backgroundImage = `url('${url}')`;
+    } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
+  })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>בית הוראה תורת מרן – שאלות הלכה</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .bh-section { padding: 70px 24px; }
+    .bh-intro {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+    .bh-intro-text h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 30px;
+      color: var(--navy);
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+    .bh-intro-text p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.9;
+      margin-bottom: 16px;
+    }
+    .contact-box {
+      background: var(--navy-dark);
+      border-radius: 16px;
+      padding: 30px 24px;
+      border: 1px solid rgba(201,168,76,0.25);
+      text-align: center;
+    }
+    .contact-box h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 17px;
+      color: var(--gold-light);
+      margin-bottom: 20px;
+    }
+    .big-phone {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 32px;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+      direction: ltr;
+    }
+    .phone-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+    .hours-list { margin-top: 16px; }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(201,168,76,0.1);
+      font-size: 13px;
+    }
+    .hours-row:last-child { border-bottom: none; }
+    .hours-row .day { color: rgba(255,255,255,0.6); }
+    .hours-row .time { color: var(--gold-light); font-weight: 600; }
+
+    .areas-section {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 48px 40px;
+      margin-bottom: 48px;
+      box-shadow: 0 4px 24px rgba(58,42,16,0.06);
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+    .areas-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 22px;
+      color: var(--navy);
+      margin-bottom: 28px;
+      text-align: center;
+    }
+    .areas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+    }
+    .area-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 20px 18px;
+      border-right: 4px solid var(--gold);
+    }
+    .area-card .icon { font-size: 24px; margin-bottom: 10px; }
+    .area-card h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16px;
+      color: var(--navy);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .area-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+    .training-section {
+      background: var(--navy-dark);
+      border-radius: 20px;
+      padding: 44px 40px;
+      margin-bottom: 48px;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .training-section h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 22px;
+      color: var(--gold-light);
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .training-section p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      line-height: 1.85;
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 28px;
+    }
+    .training-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+    }
+    .step {
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid rgba(201,168,76,0.15);
+    }
+    .step-num {
+      width: 36px; height: 36px;
+      background: var(--gold-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 16px;
+      color: var(--navy-dark);
+      font-weight: 700;
+      margin: 0 auto 12px;
+    }
+    .step h4 { font-size: 14px; color: var(--gold-light); margin-bottom: 8px; font-family: 'Frank Ruhl Libre', serif; }
+    .step p { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+    @media (max-width: 768px) {
+      .bh-intro { grid-template-columns: 1fr; }
+      .areas-section, .training-section { padding: 28px 20px; }
+    }
+  </style>
+
+  <style>
+  /* ── PAGE HERO WITH DYNAMIC IMAGE ── */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(15,26,48,0.88) 0%,
+      rgba(26,39,68,0.82) 60%,
+      rgba(36,48,87,0.75) 100%);
+    z-index: 0;
+  }
+  .page-hero h1, .page-hero p { position: relative; z-index: 1; }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="kollel.html">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html" class="active">בית הוראה</a></li>
+        <li><a href="shiurim.html">שיעורי תורה</a></li>
+        <li><a href="alonot.html">עלונים</a></li>
+        <li><a href="donations.html">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>בית הוראה "תורת מרן"</h1>
+    <p>מענה הלכתי לציבור הרחב – שאלות טהרה וכל ענייני הלכה למעשה</p>
+  </div>
+
+  <section class="bh-section">
+    <div class="container">
+
+      <div class="bh-intro">
+        <div class="bh-intro-text">
+          <h2>שאלות הלכה – אנחנו כאן</h2>
+          <p>
+            בית ההוראה "תורת מרן" הוקם במטרה לתת מענה הלכתי מהיר, ברור ומדויק לציבור הרחב
+            בכל ענייני הלכה למעשה – ובמיוחד בענייני טהרת המשפחה.
+          </p>
+          <p>
+            המורי הוראה בבית ההוראה פוסקים לאור שיטתו של מרן הרב עובדיה יוסף זצוק"ל, מתוך
+            שפה מכובדת, נגישה וברורה, תוך מיוחדת בענייני צניעות והלכה לאישה.
+          </p>
+          <p>
+            בית ההוראה משמש גם מסגרת הכשרה מעשית לאברכי הכולל – הם לומדים לפסוק מתוך
+            מגע ישיר עם שאלות אמיתיות מהשטח.
+          </p>
+          <p>
+            הציבור מוזמן לפנות בטלפון בשעות הפעילות, ולקבל מענה מיידי או להשאיר הודעה.
+          </p>
+        </div>
+
+        <div class="contact-box">
+          <h3>📞 שאלו אותנו</h3>
+          <span class="big-phone">03-313-7547</span>
+          <div class="phone-label">קו ישיר לבית ההוראה</div>
+          <div class="hours-list">
+            <div class="hours-row"><span class="day">ראשון – חמישי</span><span class="time">9:00 – 18:00</span></div>
+            <div class="hours-row"><span class="day">ערב שישי</span><span class="time">9:00 – 13:00</span></div>
+            <div class="hours-row"><span class="day">שבת ומועד</span><span class="time">סגור</span></div>
+          </div>
+          <div style="margin-top:20px;">
+            <a href="contact.html" class="btn-primary" style="font-size:13px; padding: 10px 22px;">שליחת שאלה במייל ←</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="areas-section">
+        <h3>תחומי הפסיקה</h3>
+        <div class="areas-grid">
+          <div class="area-card">
+            <div class="icon">🕯️</div>
+            <h4>טהרת המשפחה</h4>
+            <p>שאלות נידה, הפסקה בטהרה, בדיקות, וכל ענייני טהרה לאישה.</p>
+          </div>
+          <div class="area-card">
+            <div class="icon">🥩</div>
+            <h4>בשר ובישולים</h4>
+            <p>שאלות בישולי עכו"ם, בשר בחלב, תערובות ועוד.</p>
+          </div>
+          <div class="area-card">
+            <div class="icon">🕍</div>
+            <h4>שבת ומועד</h4>
+            <p>שאלות מלאכות שבת, חגים, ספירת העומר, ועוד.</p>
+          </div>
+          <div class="area-card">
+            <div class="icon">💍</div>
+            <h4>אישות ושידוכין</h4>
+            <p>שאלות אישות, גט, חליצה, ועוד ענייני חוזה ואישות.</p>
+          </div>
+          <div class="area-card">
+            <div class="icon">🍷</div>
+            <h4>ברכות וסדר תפילה</h4>
+            <p>ברכות הנהנין, ברכות השבח, סדר קדוש, הבדלה ועוד.</p>
+          </div>
+          <div class="area-card">
+            <div class="icon">⚖️</div>
+            <h4>כל שאלה הלכתית</h4>
+            <p>כל שאלה שנקראת בלבכם – אנחנו כאן לסייע.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="training-section">
+        <h3>הכשרת מורי הוראה</h3>
+        <p>
+          לצד המענה לציבור, בית ההוראה משמש מסגרת הכשרה מעשית לאברכים המתמחים בפסיקה.
+          תהליך ההכשרה כולל:
+        </p>
+        <div class="training-steps">
+          <div class="step">
+            <div class="step-num">א</div>
+            <h4>לימוד הלכה שיטתי</h4>
+            <p>עיון מעמיק בנושאי ההלכה הנדרשים להוראה בפועל.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">ב</div>
+            <h4>תרגול מעשי</h4>
+            <p>עמידה ליד הפוסק ולמידה מהשאלות הממשיות שמגיעות.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">ג</div>
+            <h4>שיעורי פסיקה</h4>
+            <p>שיעורים שבועיים בכללי פסיקה ובדרכי ההוראה לדורנו.</p>
+          </div>
+          <div class="step">
+            <div class="step-num">ד</div>
+            <h4>בחינת הוראה</h4>
+            <p>קבלת תעודת הוראה ומינוי רשמי לאחר השלמת ההכשרה.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container">
+      <blockquote>
+        "מורה הוראה בישראל – זכות וחובה"
+        <cite>– מרן הרב עובדיה יוסף זצוק"ל</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+
+  <script>
+  // ═══════════════════════════════════════════
+  //  תמונת hero דינמית מ-Google Sheets (גיליון images)
+  //  עמודות: page(0) imageUrl(1) alt(2)
+  //  gid של גיליון images – יש לעדכן אחרי יצירתו
+  // ═══════════════════════════════════════════
+  (async function() {
+    const PAGE_KEY  = 'beit-horaah';
+    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=IMAGES_GID&single=true&output=csv';
+
+    function parseCSVLine(line) {
+      const result = []; let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+        else if (ch===',' && !inQ) { result.push(cur); cur=''; }
+        else cur += ch;
+      }
+      result.push(cur); return result;
+    }
+
+    try {
+      const res  = await fetch(IMAGES_CSV + '&t=' + Date.now());
+      if (!res.ok) return;
+      const lines = (await res.text()).trim().split('\n');
+      const row   = lines.slice(1)
+                         .map(l => parseCSVLine(l))
+                         .find(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY);
+      if (!row) return;
+      const url = (row[1]||'').trim();
+      if (!url) return;
+      const hero = document.querySelector('.page-hero');
+      if (hero) hero.style.backgroundImage = `url('${url}')`;
+    } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
+  })();
+  </script>
+
+</body>
+</html>

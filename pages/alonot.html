@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>עלונים – בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .alonot-section { padding: 70px 24px; }
+
+    .alonot-intro {
+      max-width: 780px;
+      margin: 0 auto 52px;
+      text-align: center;
+    }
+    .alonot-intro h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 28px;
+      color: var(--navy);
+      margin-bottom: 14px;
+      font-weight: 700;
+    }
+    .alonot-intro p {
+      font-size: 15px;
+      color: var(--text-light);
+      line-height: 1.85;
+    }
+
+    .drive-wrap {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 0 4px 30px rgba(58,42,16,0.1);
+      border: 1px solid rgba(201,168,76,0.2);
+      margin-bottom: 52px;
+      overflow: hidden;
+    }
+    .drive-wrap iframe {
+      width: 100%;
+      height: 620px;
+      border: none;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .drive-cta {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .drive-cta p { color: var(--text-light); font-size: 14px; margin-bottom: 16px; }
+
+    .about-alonot {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+    .alon-info-card {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 28px 24px;
+      border: 1px solid rgba(201,168,76,0.15);
+      box-shadow: 0 2px 14px rgba(58,42,16,0.06);
+    }
+    .alon-info-card .icon { font-size: 28px; margin-bottom: 14px; }
+    .alon-info-card h4 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 17px;
+      color: var(--navy);
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+    .alon-info-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+    .newsletter-signup {
+      background: var(--navy-dark);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      border: 1px solid rgba(201,168,76,0.2);
+    }
+    .newsletter-signup h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 24px;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+    .newsletter-signup p {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+    }
+
+    @media (max-width: 768px) {
+      .drive-wrap iframe { height: 420px; }
+      .newsletter-signup { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="kollel.html">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html">בית הוראה</a></li>
+        <li><a href="shiurim.html">שיעורי תורה</a></li>
+        <li><a href="alonot.html" class="active">עלונים</a></li>
+        <li><a href="donations.html">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>עלונים הלכתיים</h1>
+    <p>עלון "אור השבת / תורת מרן" – שיעורי ותכניות ההלכה השבועיים, להורדה חינם</p>
+  </div>
+
+  <section class="alonot-section">
+    <div class="container">
+
+      <div class="alonot-intro">
+        <h2>ארכיון העלונים</h2>
+        <p>
+          עלון "אור השבת – תורת מרן" יוצא לאור מדי שבוע ומכיל עיבוד מסודר של שיעורי ותכניות
+          ההלכה השבועיים. העלונים פתוחים לכלל הציבור – ניתן לצפות ולהוריד ישירות מתיקיית הדרייב.
+        </p>
+      </div>
+
+      <div class="drive-wrap">
+        <iframe
+          src="https://drive.google.com/embeddedfolderview?id=1mXBax3uIPZt_JmNMb2jbm20YD1avDL6E#list"
+          title="ארכיון עלוני תורת מרן">
+        </iframe>
+      </div>
+
+      <div class="drive-cta">
+        <p>לא רואים את הקבצים? פתחו ישירות בדרייב:</p>
+        <a href="https://drive.google.com/drive/u/0/folders/1mXBax3uIPZt_JmNMb2jbm20YD1avDL6E"
+           target="_blank" class="btn-primary">
+          📁 לכל העלונים בגוגל דרייב ←
+        </a>
+      </div>
+
+      <div class="about-alonot">
+        <div class="alon-info-card">
+          <div class="icon">📰</div>
+          <h4>עלון "אור השבת"</h4>
+          <p>עיבוד שיעורי ההלכה השבועיים לפורמט עלון נוח לקריאה, מודפס ומופץ גם בקהילות.</p>
+        </div>
+        <div class="alon-info-card">
+          <div class="icon">📚</div>
+          <h4>ספרים ופרסומים</h4>
+          <p>ספרים תורניים המבוססים על דרכו של מרן והעלונים שיצאו לאור, לרכישה ולמתנה.</p>
+        </div>
+        <div class="alon-info-card">
+          <div class="icon">✉️</div>
+          <h4>עלון שבועי למייל</h4>
+          <p>הירשמו לרשימת תפוצה וקבלו את העלון ישירות לתיבת הדואר כל ערב שבת.</p>
+        </div>
+        <div class="alon-info-card">
+          <div class="icon">🌐</div>
+          <h4>הפצה ברחבי הארץ</h4>
+          <p>העלונים מופצים לקהילות ובתי כנסת רבים ברחבי ישראל. מעוניינים לקבל? צרו קשר.</p>
+        </div>
+      </div>
+
+      <div class="newsletter-signup">
+        <h3>קבלו את העלון ישירות למייל</h3>
+        <p>
+          הירשמו לרשימת התפוצה שלנו וקבלו את עלון "אור השבת – תורת מרן" כל שישי ישירות לתיבה שלכם.
+          חינם לחלוטין.
+        </p>
+        <a href="https://toratmaran033137547.minisite.ms/home"
+           target="_blank" class="btn-primary">
+          ✉ הרשמה לרשימת התפוצה ←
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+</body>
+</html>

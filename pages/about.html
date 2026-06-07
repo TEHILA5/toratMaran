@@ -133,6 +133,28 @@
       .about-grid { grid-template-columns: 1fr; }
     }
   </style>
+
+  <style>
+  /* ── PAGE HERO WITH DYNAMIC IMAGE ── */
+  .page-hero {
+    position: relative;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg,
+      rgba(15,26,48,0.88) 0%,
+      rgba(26,39,68,0.82) 60%,
+      rgba(36,48,87,0.75) 100%);
+    z-index: 0;
+  }
+  .page-hero h1, .page-hero p { position: relative; z-index: 1; }
+  </style>
 </head>
 <body>
 
@@ -303,6 +325,44 @@
       <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
     </div>
   </footer>
+
+
+  <script>
+  // ═══════════════════════════════════════════
+  //  תמונת hero דינמית מ-Google Sheets (גיליון images)
+  //  עמודות: page(0) imageUrl(1) alt(2)
+  //  gid של גיליון images – יש לעדכן אחרי יצירתו
+  // ═══════════════════════════════════════════
+  (async function() {
+    const PAGE_KEY  = 'about';
+    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=IMAGES_GID&single=true&output=csv';
+
+    function parseCSVLine(line) {
+      const result = []; let cur = '', inQ = false;
+      for (let i = 0; i < line.length; i++) {
+        const ch = line[i];
+        if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+        else if (ch===',' && !inQ) { result.push(cur); cur=''; }
+        else cur += ch;
+      }
+      result.push(cur); return result;
+    }
+
+    try {
+      const res  = await fetch(IMAGES_CSV + '&t=' + Date.now());
+      if (!res.ok) return;
+      const lines = (await res.text()).trim().split('\n');
+      const row   = lines.slice(1)
+                         .map(l => parseCSVLine(l))
+                         .find(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY);
+      if (!row) return;
+      const url = (row[1]||'').trim();
+      if (!url) return;
+      const hero = document.querySelector('.page-hero');
+      if (hero) hero.style.backgroundImage = `url('${url}')`;
+    } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
+  })();
+  </script>
 
 </body>
 </html>
