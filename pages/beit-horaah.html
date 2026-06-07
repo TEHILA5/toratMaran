@@ -477,67 +477,6 @@
 
 
   <script>
-  (function() {
-    const PAGE_KEY   = 'beit-horaah';
-    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=294437223&single=true&output=csv';
-
-    function parseCSVLine(line) {
-      const r=[]; let c='',q=false;
-      for(let i=0;i<line.length;i++){
-        const ch=line[i];
-        if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++;}else q=!q;}
-        else if(ch===','&&!q){r.push(c);c='';}
-        else c+=ch;
-      }
-      r.push(c); return r;
-    }
-
-    function driveDirectUrl(url) {
-      const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-      if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=900&q=85';
-      return url;
-    }
-
-    async function loadGallery() {
-      try {
-        const res = await fetch(IMAGES_CSV + '&t=' + Date.now());
-        if (!res.ok) return;
-        const lines = (await res.text()).trim().split(/\r?\n/);
-        const rows = lines.slice(1)
-          .map(l => parseCSVLine(l))
-          .filter(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY && (c[1]||'').trim())
-          .sort((a,b) => parseInt(a[3]||99) - parseInt(b[3]||99));
-
-        if (!rows.length) return;
-
-        document.getElementById('pageGallery').style.display = 'block';
-        const grid = document.getElementById('galleryGrid');
-
-        rows.forEach(row => {
-          const imgUrl = driveDirectUrl((row[1]||'').trim());
-          const alt    = (row[2]||'').trim();
-          const item = document.createElement('div');
-          item.className = 'gallery-item';
-          item.innerHTML = '<img src="' + imgUrl + '" alt="' + alt + '" loading="lazy" onerror="this.parentElement.style.display='none'" />'
-            + (alt ? '<div class="gallery-caption">' + alt + '</div>' : '');
-          item.addEventListener('click', () => {
-            document.getElementById('galleryLightboxImg').src = imgUrl;
-            document.getElementById('galleryLightbox').classList.add('open');
-          });
-          grid.appendChild(item);
-        });
-
-        document.getElementById('galleryLightbox').addEventListener('click', function(e){
-          if(e.target===this) this.classList.remove('open');
-        });
-      } catch(e) {}
-    }
-
-    loadGallery();
-  })();
-  </script>
-
-  <script>
   // ══ גלריית תמונות – beit-horaah ══
   (function() {
     const PAGE_KEY   = 'beit-horaah';
@@ -614,7 +553,7 @@
           card.className = 'photo-card';
           card.style.animationDelay = (i * 0.07) + 's';
           card.innerHTML = '<img class="photo-thumb" src="' + item.url + '" alt="' + item.alt + '" loading="lazy"'
-            + ' onerror="this.closest('.photo-card').style.display='none'" />'
+            + ' onerror="this.closest(&apos;.photo-card&apos;).style.display=&apos;none&apos;" />'
             + (item.alt ? '<div class="photo-info"><p>' + item.alt + '</p></div>' : '');
           card.addEventListener('click', () => openLightboxPhoto(i));
           grid.appendChild(card);
