@@ -404,14 +404,23 @@
       if (!url) return;
 
       // המרת קישור Google Drive לפורמט embed ישיר
-      // תומך בפורמטים: /file/d/ID/view  וגם  /uc?id=ID
       const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-      if (driveMatch) {
-        url = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
-      }
+      const fileId = driveMatch ? driveMatch[1] : null;
+
+      // Google Drive חוסם fetch ישיר — משתמשים ב-proxy CORS ציבורי
+      // images.weserv.nl מגיש את התמונה כ-CORS-safe
+      const proxyUrl = fileId
+        ? `https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D${fileId}&w=1400&q=85`
+        : url;
 
       const hero = document.querySelector('.page-hero');
-      if (hero) hero.style.backgroundImage = `url('${url}')`;
+      if (!hero) return;
+
+      // טוען את התמונה לפני ההצבה כדי למנוע flash
+      const img = new Image();
+      img.onload = () => { hero.style.backgroundImage = `url('${proxyUrl}')`; };
+      img.onerror = () => { /* נכשל — נשאר עם gradient */ };
+      img.src = proxyUrl;
     } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
   })();
   </script>
