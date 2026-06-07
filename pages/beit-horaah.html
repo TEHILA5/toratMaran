@@ -378,8 +378,16 @@
                          .map(l => parseCSVLine(l))
                          .find(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY);
       if (!row) return;
-      const url = (row[1]||'').trim();
+      let url = (row[1]||'').trim();
       if (!url) return;
+
+      // המרת קישור Google Drive לפורמט embed ישיר
+      // תומך בפורמטים: /file/d/ID/view  וגם  /uc?id=ID
+      const driveMatch = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (driveMatch) {
+        url = `https://drive.google.com/uc?export=view&id=${driveMatch[1]}`;
+      }
+
       const hero = document.querySelector('.page-hero');
       if (hero) hero.style.backgroundImage = `url('${url}')`;
     } catch(e) { /* שגיאת רשת – ה-hero נשאר עם gradient רגיל */ }
