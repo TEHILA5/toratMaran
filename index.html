@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:        #c9a84c;
+      --gold-light:  #e8d08a;
+      --gold-dark:   #9a7a2e;
+      --navy:        #1a2744;
+      --navy-dark:   #0f1a30;
+      --navy-mid:    #243057;
+      --cream:       #f9f5ec;
+      --cream-dark:  #f0e8d0;
+      --text:        #2a1f0e;
+      --text-light:  #6b5a3e;
+      --white:       #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Heebo', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      direction: rtl;
+    }
+
+    /* ── HEADER ── */
+    .site-header {
+      background: var(--navy-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+      border-bottom: 2px solid var(--gold-dark);
+    }
+    .navbar {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-img {
+      height: 52px;
+      width: auto;
+    }
+    .logo-text {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--gold-light);
+      line-height: 1.3;
+    }
+    .logo-sub {
+      font-size: 11px;
+      color: var(--gold);
+      font-weight: 400;
+      display: block;
+    }
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 4px;
+    }
+    .nav-links a {
+      text-decoration: none;
+      color: rgba(255,255,255,0.8);
+      font-size: 13.5px;
+      font-weight: 500;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: all 0.18s;
+      white-space: nowrap;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      background: rgba(201,168,76,0.15);
+      color: var(--gold-light);
+    }
+    .hamburger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--gold-light);
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--navy-dark);
+      border-top: 1px solid rgba(201,168,76,0.2);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.85);
+      text-decoration: none;
+      padding: 14px 24px;
+      font-size: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(160deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-mid) 100%);
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 60px 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,168,76,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 20%, rgba(201,168,76,0.05) 0%, transparent 60%);
+    }
+    .hero-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: repeating-linear-gradient(
+        45deg,
+        var(--gold) 0, var(--gold) 1px,
+        transparent 0, transparent 50%
+      );
+      background-size: 30px 30px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+    }
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid rgba(201,168,76,0.4);
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      background: rgba(201,168,76,0.07);
+    }
+    .hero-logo {
+      width: min(320px, 80vw);
+      height: auto;
+      margin-bottom: 32px;
+      filter: drop-shadow(0 8px 32px rgba(201,168,76,0.3));
+      animation: floatIn 0.9s ease both;
+    }
+    @keyframes floatIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero-title {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(32px, 6vw, 58px);
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1.2;
+      margin-bottom: 12px;
+      animation: floatIn 0.9s 0.15s ease both;
+    }
+    .hero-subtitle {
+      font-size: clamp(14px, 2vw, 17px);
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 10px;
+      font-weight: 300;
+      animation: floatIn 0.9s 0.25s ease both;
+    }
+    .hero-leadership {
+      font-size: 13px;
+      color: var(--gold);
+      margin-bottom: 40px;
+      line-height: 1.8;
+      animation: floatIn 0.9s 0.35s ease both;
+    }
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 28px;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: floatIn 0.9s 0.45s ease both;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--gold-dark), var(--gold));
+      color: var(--navy-dark);
+      text-decoration: none;
+      padding: 14px 34px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      transition: all 0.22s;
+      box-shadow: 0 4px 20px rgba(201,168,76,0.35);
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(201,168,76,0.45);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--gold-light);
+      text-decoration: none;
+      padding: 13px 34px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Heebo', sans-serif;
+      border: 1.5px solid rgba(201,168,76,0.5);
+      transition: all 0.22s;
+    }
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      background: rgba(201,168,76,0.1);
+    }
+
+    /* ── FEATURES ── */
+    .features {
+      padding: 80px 24px;
+      background: var(--white);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .section-title {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .section-title h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(26px, 4vw, 36px);
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+    .section-title .ornament {
+      color: var(--gold);
+      font-size: 20px;
+      margin: 0 12px;
+    }
+    .section-title p {
+      color: var(--text-light);
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    .feature-card {
+      background: var(--cream);
+      border: 1px solid rgba(201,168,76,0.2);
+      border-radius: 16px;
+      padding: 32px 28px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 4px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--gold), transparent);
+      border-radius: 0 16px 16px 0;
+    }
+    .feature-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(58,42,16,0.12);
+      border-color: rgba(201,168,76,0.4);
+    }
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    .feature-card h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .feature-card p {
+      font-size: 14px;
+      color: var(--text-light);
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .card-link {
+      color: var(--gold-dark);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.18s;
+    }
+    .card-link:hover { gap: 8px; }
+
+    /* ── QUOTE BANNER ── */
+    .quote-banner {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      padding: 60px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.08) 0%, transparent 70%);
+    }
+    .quote-banner blockquote {
+      position: relative;
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(22px, 4vw, 34px);
+      color: var(--gold-light);
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .quote-banner cite {
+      display: block;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      font-style: normal;
+      margin-top: 10px;
+      font-family: 'Heebo', sans-serif;
+      font-weight: 300;
+    }
+
+    /* ── ACTIVITY SECTION ── */
+    .activity-section {
+      padding: 80px 24px;
+      background: var(--cream);
+    }
+    .activity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+    .activity-item {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid rgba(201,168,76,0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      transition: box-shadow 0.2s;
+    }
+    .activity-item:hover {
+      box-shadow: 0 6px 24px rgba(58,42,16,0.08);
+    }
+    .activity-item .icon {
+      font-size: 28px;
+    }
+    .activity-item h3 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .activity-item p {
+      font-size: 13px;
+      color: var(--text-light);
+      line-height: 1.65;
+    }
+    .activity-item a {
+      color: var(--gold-dark);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-top: auto;
+    }
+
+    /* ── CTA ── */
+    .cta-section {
+      background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 100%);
+      padding: 70px 24px;
+      text-align: center;
+    }
+    .cta-section h2 {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 900;
+      color: var(--navy-dark);
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 16px;
+      color: rgba(15,26,48,0.75);
+      margin-bottom: 32px;
+    }
+    .btn-dark {
+      background: var(--navy-dark);
+      color: var(--gold-light);
+      text-decoration: none;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'Heebo', sans-serif;
+      display: inline-block;
+      transition: all 0.22s;
+    }
+    .btn-dark:hover {
+      background: var(--navy);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: var(--navy-dark);
+      padding: 48px 24px 28px;
+      text-align: center;
+      color: rgba(255,255,255,0.6);
+      border-top: 2px solid var(--gold-dark);
+    }
+    .footer-logo {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 20px;
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin-bottom: 24px;
+    }
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.18s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+    }
+    .footer-copy a { color: var(--gold-dark); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .hero { min-height: 70vh; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="images/logo.png" alt="תורת מרן" class="logo-img" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">בית</a></li>
+        <li><a href="pages/about.html">אודות</a></li>
+        <li><a href="pages/kollel.html">כולל אברכים</a></li>
+        <li><a href="pages/beit-horaah.html">בית הוראה</a></li>
+        <li><a href="pages/shiurim.html">שיעורי תורה</a></li>
+        <li><a href="pages/alonot.html">עלונים</a></li>
+        <li><a href="pages/donations.html">תרומות</a></li>
+        <li><a href="pages/contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html">בית</a>
+      <a href="pages/about.html">אודות</a>
+      <a href="pages/kollel.html">כולל אברכים</a>
+      <a href="pages/beit-horaah.html">בית הוראה</a>
+      <a href="pages/shiurim.html">שיעורי תורה</a>
+      <a href="pages/alonot.html">עלונים</a>
+      <a href="pages/donations.html">תרומות</a>
+      <a href="pages/contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-pattern"></div>
+    <div class="hero-content">
+      <div class="hero-badge">ב״ה</div>
+      <img src="images/logo-full.png" alt="תורת מרן" class="hero-logo"
+           onerror="this.style.display='none'" />
+      <h1 class="hero-title">בית המדרש תורת מרן</h1>
+      <p class="hero-subtitle">בית מדרש, כולל הלכה, ובית הוראה – לאור פסקי מרן רבנו עובדיה יוסף זצוק"ל</p>
+      <div class="hero-leadership">
+        בראשות הרב שמעון ללוש שליט"א<br/>
+        בנשיאות מרן הראש"ל רבנו יצחק יוסף שליט"א
+      </div>
+      <div class="hero-divider"></div>
+      <div class="hero-buttons">
+        <a href="pages/shiurim.html" class="btn-primary">שיעורי תורה</a>
+        <a href="pages/donations.html" class="btn-secondary">שותפות בתורה</a>
+        <a href="pages/about.html" class="btn-secondary">קראו עלינו</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="features">
+    <div class="container">
+      <div class="section-title">
+        <span class="ornament">❧</span>
+        <h2>פעילויות המרכז</h2>
+        <span class="ornament">❧</span>
+        <p>מגוון תחומי פעילות להפצת תורה והלכה לציבור הרחב</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📚</div>
+          <h3>כולל אברכים "חכמת שלמה"</h3>
+          <p>כולל עיוני להכשרת מורי הוראה ופוסקי הלכה, בעיון שיטתי מסוגיות הש"ס ועד פוסקי דורנו.</p>
+          <a href="pages/kollel.html" class="card-link">לפרטים נוספים ←</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚖️</div>
+          <h3>בית הוראה "תורת מרן"</h3>
+          <p>מענה הלכתי לציבור הרחב בענייני טהרה והלכה למעשה, בטלפון ובפועל.</p>
+          <a href="pages/beit-horaah.html" class="card-link">לפרטים נוספים ←</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎥</div>
+          <h3>שיעורי תורה</h3>
+          <p>שיעורים ודרשות בכולל, בקו הלכה, בערוץ יוטיוב ובקהילות – צפו בכל עת.</p>
+          <a href="pages/shiurim.html" class="card-link">לצפייה ←</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📰</div>
+          <h3>עלונים הלכתיים</h3>
+          <p>עלון "אור השבת / תורת מרן" – שיעורי ותכניות ההלכה השבועיים לעלונים ומאמרים.</p>
+          <a href="pages/alonot.html" class="card-link">לעלונים ←</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧺</div>
+          <h3>סלים לחגים</h3>
+          <p>חלוקת סלים לחגי תשרי, קמחא דפסחא למשפחות אברכים ונזקקים.</p>
+          <a href="pages/contact.html" class="card-link">לפרטים ←</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤝</div>
+          <h3>שותפות ותמיכה</h3>
+          <p>תומכי אברכים, שותפות בבית ההוראה ובהפצת עלונים, נציב יום ועוד.</p>
+          <a href="pages/donations.html" class="card-link">לשותפות ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-banner">
+    <div class="container">
+      <blockquote>
+        "תלמוד תורה כנגד כולם"
+        <cite>– משנה פאה א', א'</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <section class="activity-section">
+    <div class="container">
+      <div class="section-title">
+        <span class="ornament">❧</span>
+        <h2>קישורים מהירים</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="activity-grid">
+        <div class="activity-item">
+          <div class="icon">▶️</div>
+          <h3>ערוץ יוטיוב</h3>
+          <p>שיעורים ודרשות בוידאו – צפו בכל עת בכל מקום</p>
+          <a href="https://www.youtube.com/@toratmaran" target="_blank">לערוץ היוטיוב ←</a>
+        </div>
+        <div class="activity-item">
+          <div class="icon">📄</div>
+          <h3>עלונים שבועיים</h3>
+          <p>ארכיון עלוני "אור השבת" – להורדה חינם</p>
+          <a href="https://drive.google.com/drive/u/0/folders/1mXBax3uIPZt_JmNMb2jbm20YD1avDL6E" target="_blank">לעלונים ←</a>
+        </div>
+        <div class="activity-item">
+          <div class="icon">💳</div>
+          <h3>תרומה מאובטחת</h3>
+          <p>תמכו בפעילות הכולל ובית ההוראה דרך נדרים פלוס</p>
+          <a href="https://www.matara.pro/nedarimplus/online/?mosad=7012862" target="_blank">לתרומה ←</a>
+        </div>
+        <div class="activity-item">
+          <div class="icon">✉️</div>
+          <h3>ניוזלטר שבועי</h3>
+          <p>הירשמו לקבלת עלון הלכה שבועי למייל</p>
+          <a href="https://toratmaran033137547.minisite.ms/home" target="_blank">להרשמה ←</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>הצטרפו למשפחת בית המדרש תורת מרן</h2>
+      <p>תמכו בהפצת תורה והלכה לציבור הרחב</p>
+      <a href="pages/donations.html" class="btn-dark">לשותפות בתורה ←</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד | מפיצים תורה והלכה לציבור הרחב</p>
+      <div class="footer-links">
+        <a href="index.html">בית</a>
+        <a href="pages/about.html">אודות</a>
+        <a href="pages/kollel.html">כולל</a>
+        <a href="pages/beit-horaah.html">בית הוראה</a>
+        <a href="pages/shiurim.html">שיעורים</a>
+        <a href="pages/alonot.html">עלונים</a>
+        <a href="pages/donations.html">תרומות</a>
+        <a href="pages/contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">
+        טלפון: 03-313-7547 |
+        <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a>
+      </p>
+    </div>
+  </footer>
+
+</body>
+</html>

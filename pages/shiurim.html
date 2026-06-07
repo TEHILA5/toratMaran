@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>שיעורי תורה – בית המדרש תורת מרן</title>
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../images/logo.png" alt="תורת מרן" class="logo-img" onerror="this.style.display='none'" />
+        <div>
+          <span class="logo-text">בית המדרש תורת מרן</span>
+          <span class="logo-sub">כולל אברכים | בית הוראה | שיעורי תורה</span>
+        </div>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">בית</a></li>
+        <li><a href="about.html">אודות</a></li>
+        <li><a href="kollel.html">כולל אברכים</a></li>
+        <li><a href="beit-horaah.html">בית הוראה</a></li>
+        <li><a href="shiurim.html" class="active">שיעורי תורה</a></li>
+        <li><a href="alonot.html">עלונים</a></li>
+        <li><a href="donations.html">תרומות</a></li>
+        <li><a href="contact.html">צור קשר</a></li>
+      </ul>
+      <button class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">☰</button>
+    </nav>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="../index.html">בית</a>
+      <a href="about.html">אודות</a>
+      <a href="kollel.html">כולל אברכים</a>
+      <a href="beit-horaah.html">בית הוראה</a>
+      <a href="shiurim.html">שיעורי תורה</a>
+      <a href="alonot.html">עלונים</a>
+      <a href="donations.html">תרומות</a>
+      <a href="contact.html">צור קשר</a>
+    </div>
+  </header>
+
+  <div class="page-hero">
+    <h1>שיעורי תורה</h1>
+    <p>שיעורים ודרשות מפי גדולי תורה – לצפייה חינם בכל עת</p>
+  </div>
+
+  <!-- סרגל מיון -->
+  <div class="controls-bar">
+    <div class="controls-inner">
+      <div class="controls-right">
+        <span class="controls-label">מיון:</span>
+        <div class="sort-btn-group">
+          <button class="sort-btn active" onclick="setSort(this,'newest')">חדש לישן</button>
+          <button class="sort-btn" onclick="setSort(this,'oldest')">ישן לחדש</button>
+          <button class="sort-btn" onclick="setSort(this,'title')">לפי שם</button>
+        </div>
+        <span class="controls-label">מרצה:</span>
+        <select class="filter-select" id="lecturerFilter" onchange="applyFilters()">
+          <option value="">כל המרצים</option>
+        </select>
+        <input class="search-input" id="searchInput" type="text" placeholder="🔍 חיפוש..." oninput="applyFilters()" />
+      </div>
+      <span class="results-count" id="resultsCount"></span>
+    </div>
+  </div>
+
+  <section class="shiurim-section">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:32px;">
+        <span class="ornament">❧</span>
+        <h2>שיעורים אחרונים</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="shiurim-grid" id="shiurimGrid">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>טוען שיעורים...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="load-more-wrap" id="loadMoreWrap" style="display:none;">
+    <button class="load-more-btn" id="loadMoreBtn" onclick="loadMore()">הצג עוד שיעורים ▾</button>
+  </div>
+
+  <!-- כפתור לערוץ יוטיוב -->
+  <div style="text-align:center; padding: 0 0 60px;">
+    <a href="https://www.youtube.com/@toratmaran" target="_blank" class="btn-primary">
+      ▶ לכל השיעורים בערוץ היוטיוב
+    </a>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">בית המדרש תורת מרן</div>
+      <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
+      <div class="footer-links">
+        <a href="../index.html">בית</a>
+        <a href="about.html">אודות</a>
+        <a href="shiurim.html">שיעורים</a>
+        <a href="alonot.html">עלונים</a>
+        <a href="donations.html">תרומות</a>
+        <a href="contact.html">צור קשר</a>
+      </div>
+      <p class="footer-copy">טלפון: 03-313-7547 | <a href="mailto:toratmaran033137547@gmail.com">toratmaran033137547@gmail.com</a></p>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="video-lightbox" id="videoLightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+      <iframe id="lightboxFrame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+  // ════════════════════════════════════════
+  //  קישור Google Sheets – יש להחליף ב-URL האמיתי
+  // ════════════════════════════════════════
+  const SHEETS_CSV_URL = 'YOUR_GOOGLE_SHEETS_CSV_URL_HERE';
+
+  const PAGE_SIZE = 12;
+  let ALL_SHIURIM = [];
+  let currentSort = 'newest';
+  let filteredList = [];
+  let displayedCount = 0;
+
+  function parseCSVLine(line) {
+    const result = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+      else if (ch===',' && !inQ) { result.push(cur); cur=''; }
+      else cur += ch;
+    }
+    result.push(cur);
+    return result;
+  }
+
+  function parseCSV(text) {
+    const lines = text.trim().split('\n');
+    if (lines.length < 2) return [];
+    return lines.slice(1).map(line => {
+      const c = parseCSVLine(line);
+      const d = new Date((c[3]||'').trim());
+      return {
+        title:       (c[0]||'').trim(),
+        lecturer:    (c[1]||'').trim(),
+        dateHeb:     (c[2]||'').trim(),
+        date:        isNaN(d) ? new Date(0) : d,
+        description: (c[4]||'').trim(),
+        videoId:     (c[5]||'').trim() || null,
+      };
+    }).filter(s => s.title);
+  }
+
+  async function fetchShiurim() {
+    try {
+      const res = await fetch(SHEETS_CSV_URL + '&t=' + Date.now());
+      if (!res.ok) throw new Error('שגיאת רשת');
+      ALL_SHIURIM = parseCSV(await res.text());
+      buildLecturerFilter();
+      applyFilters();
+    } catch(err) {
+      document.getElementById('shiurimGrid').innerHTML = `
+        <div class="error-state">
+          <p>⚠️ לא ניתן לטעון שיעורים כרגע</p>
+          <button class="retry-btn" onclick="fetchShiurim()">נסה שוב</button>
+        </div>`;
+    }
+  }
+
+  function buildLecturerFilter() {
+    const sel = document.getElementById('lecturerFilter');
+    const names = [...new Set(ALL_SHIURIM.map(s=>s.lecturer).filter(Boolean))].sort((a,b)=>a.localeCompare(b,'he'));
+    names.forEach(n => {
+      const o = document.createElement('option');
+      o.value = o.textContent = n;
+      sel.appendChild(o);
+    });
+  }
+
+  function setSort(btn, type) {
+    currentSort = type;
+    document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    applyFilters();
+  }
+
+  function applyFilters() {
+    const lec = document.getElementById('lecturerFilter').value;
+    const q   = document.getElementById('searchInput').value.trim().toLowerCase();
+    filteredList = ALL_SHIURIM.filter(s => {
+      if (lec && s.lecturer !== lec) return false;
+      if (q && !(s.title+s.lecturer+s.description+s.dateHeb).toLowerCase().includes(q)) return false;
+      return true;
+    });
+    const copy = [...filteredList];
+    if (currentSort==='newest') copy.sort((a,b)=>b.date-a.date);
+    else if (currentSort==='oldest') copy.sort((a,b)=>a.date-b.date);
+    else copy.sort((a,b)=>a.title.localeCompare(b.title,'he'));
+    filteredList = copy;
+    displayedCount = 0;
+    renderGrid(true);
+  }
+
+  function renderGrid(reset) {
+    const grid = document.getElementById('shiurimGrid');
+    if (reset) grid.innerHTML = '';
+    if (!filteredList.length) {
+      grid.innerHTML = '<div class="empty-state"><p>📭 לא נמצאו שיעורים</p></div>';
+      document.getElementById('loadMoreWrap').style.display = 'none';
+      document.getElementById('resultsCount').textContent = '';
+      return;
+    }
+    const next = Math.min(displayedCount + PAGE_SIZE, filteredList.length);
+    filteredList.slice(displayedCount, next).forEach((s,i) => {
+      const card = document.createElement('div');
+      card.className = 'shiur-card';
+      card.style.animationDelay = (i*0.05)+'s';
+      const vid = s.videoId
+        ? `<div class="video-container" onclick="openLightbox('${s.videoId}')" style="cursor:pointer;">
+             <img src="https://img.youtube.com/vi/${s.videoId}/hqdefault.jpg"
+                  style="position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;" alt="" />
+             <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                  width:52px;height:52px;background:rgba(201,168,76,0.9);border-radius:50%;
+                  display:flex;align-items:center;justify-content:center;font-size:20px;color:#0f1a30;">▶</div>
+           </div>`
+        : `<div class="video-container"><div class="video-placeholder"><span class="play-icon">▶</span><span>בקרוב</span></div></div>`;
+      card.innerHTML = `${vid}
+        <div class="shiur-info">
+          <h3>${s.title}</h3>
+          <div class="meta-tags">
+            <span class="meta-tag">📅 ${s.dateHeb}</span>
+            <span class="meta-tag lecturer">👤 ${s.lecturer}</span>
+          </div>
+          <p>${s.description}</p>
+        </div>`;
+      grid.appendChild(card);
+    });
+    displayedCount = next;
+    const rem = filteredList.length - displayedCount;
+    const wrap = document.getElementById('loadMoreWrap');
+    wrap.style.display = rem > 0 ? 'flex' : 'none';
+    if (rem > 0) document.getElementById('loadMoreBtn').textContent = `הצג עוד ${rem} שיעורים ▾`;
+    document.getElementById('resultsCount').textContent = `מציג ${displayedCount} מתוך ${filteredList.length}`;
+  }
+
+  function loadMore() { renderGrid(false); window.scrollBy({top:200,behavior:'smooth'}); }
+  function openLightbox(id) {
+    document.getElementById('lightboxFrame').src = 'https://www.youtube.com/embed/'+id+'?autoplay=1';
+    document.getElementById('videoLightbox').classList.add('open');
+  }
+  function closeLightbox() {
+    document.getElementById('lightboxFrame').src = '';
+    document.getElementById('videoLightbox').classList.remove('open');
+  }
+  document.getElementById('videoLightbox').addEventListener('click', function(e){ if(e.target===this) closeLightbox(); });
+
+  fetchShiurim();
+  </script>
+</body>
+</html>
