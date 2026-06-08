@@ -75,6 +75,45 @@ async function loadTexts() {
   });
 }
 
+
+// ── מפתחות CMS – עמוד כולל אברכים ────────────────────────
+// kollel_hero_sub          – כיתוב קטן מתחת לכותרת הראשית
+// kollel_section_title     – כותרת "אודות הכולל"
+// kollel_intro             – פסקת פתיחה (קיים)
+// kollel_p2                – פסקה 2 – שיטת הלימוד
+// kollel_p3                – פסקה 3 – השיעורים
+// kollel_p4                – פסקה 4 – שם הכולל
+// kollel_p5                – פסקה 5 – מטרת הכולל
+// kollel_sidebar_location  – מיקום בסרגל הצד
+// kollel_sidebar_rosh      – ראש הכולל
+// kollel_sidebar_nasi      – נשיא הכולל
+// kollel_pillars_title     – כותרת "עמודי הלימוד"
+// kollel_pillar1_title … kollel_pillar6_title – כותרות עמודים
+// kollel_pillar1_text  … kollel_pillar6_text  – תיאורי עמודים
+// kollel_schedule_title    – כותרת "סדר הלימוד"
+// kollel_sched1_time … kollel_sched4_time     – שמות הסדרים
+// kollel_sched1_desc … kollel_sched4_desc     – תיאורי הסדרים
+// kollel_join_title        – כותרת "הצטרפו לכולל"
+// kollel_join_text         – טקסט ההזמנה
+// kollel_quote             – ציטוט בתחתית העמוד
+
+// ── מפתחות CMS – עמוד בית הוראה ──────────────────────────
+// bh_hero_sub              – כיתוב קטן מתחת לכותרת הראשית
+// bh_section_title         – כותרת "שאלות הלכה – אנחנו כאן"
+// beit_horaah_intro        – פסקת פתיחה (קיים)
+// bh_p2                    – פסקה 2 – שיטת הפסיקה
+// bh_p3                    – פסקה 3 – הכשרה מעשית
+// bh_p4                    – פסקה 4 – הזמנה לציבור
+// bh_phone_label           – כיתוב מתחת למספר הטלפון
+// bh_areas_title           – כותרת "תחומי הפסיקה"
+// bh_area1_title … bh_area6_title – כותרות תחומים
+// bh_area1_text  … bh_area6_text  – תיאורי תחומים
+// bh_training_title        – כותרת "הכשרת מורי הוראה"
+// bh_training_intro        – פסקת מבוא להכשרה
+// bh_step1_title … bh_step4_title – כותרות שלבי ההכשרה
+// bh_step1_text  … bh_step4_text  – תיאורי שלבי ההכשרה
+// bh_quote                 – ציטוט בתחתית העמוד
+
 // ── הפעלה ─────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   loadBanner();
