@@ -6,14 +6,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>עלון אור השבת – תורת מרן | הורדה חינם</title>
-<meta name="description" content="עלון 'אור השבת – תורת מרן' יוצא מדי שבוע ומכיל שיעורי הלכה ופרשת שבוע. הורדה חינם, הרשמה לרשימת תפוצה." />
-<meta name="keywords" content="עלון שבת אלעד, עלון הלכה, אור השבת תורת מרן, עלון תורני" />
+  <meta name="description" content="עלון 'אור השבת – תורת מרן' יוצא מדי שבוע ומכיל שיעורי הלכה ופרשת שבוע. הורדה חינם, הרשמה לרשימת תפוצה." />
+  <meta name="keywords" content="עלון שבת אלעד, עלון הלכה, אור השבת תורת מרן, עלון תורני" />
   <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
   <style>
     .alonot-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
       gap: 24px;
       margin-bottom: 48px;
     }
@@ -25,6 +25,7 @@
       box-shadow: 0 2px 16px rgba(58,42,16,0.07);
       transition: transform 0.22s, box-shadow 0.22s;
       animation: fadeInUp 0.45s ease both;
+      cursor: pointer;
     }
     @keyframes fadeInUp {
       from { opacity:0; transform:translateY(18px); }
@@ -35,45 +36,69 @@
       box-shadow: 0 12px 36px rgba(58,42,16,0.14);
       border-color: rgba(201,168,76,0.4);
     }
+
+    /* ── תמונה: תצוגת PDF אוטומטית ── */
     .alon-thumb-wrap {
       position: relative;
       width: 100%;
       aspect-ratio: 3/4;
-      background: var(--navy-dark);
+      background: #f0ece0;
       overflow: hidden;
     }
     .alon-thumb-wrap img {
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       display: block;
       transition: transform 0.3s;
     }
-    .alon-card:hover .alon-thumb-wrap img { transform: scale(1.04); }
+    .alon-card:hover .alon-thumb-wrap img {
+      transform: scale(1.04);
+    }
+    /* fallback כשאין תמונה */
     .alon-thumb-placeholder {
       width: 100%; height: 100%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 52px; color: rgba(201,168,76,0.4);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 8px;
+      font-size: 48px;
+      color: rgba(201,168,76,0.5);
+      background: linear-gradient(160deg, #f5f0e6 0%, #ebe3cc 100%);
     }
+    .alon-thumb-placeholder span {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 12px;
+      color: rgba(58,42,16,0.4);
+      letter-spacing: 0.5px;
+    }
+
+    /* כפתור הורדה */
     .alon-download-btn {
-      position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
-      background: rgba(201,168,76,0.92); color: #0f1a30;
+      position: absolute; bottom: 10px; left: 50%;
+      transform: translateX(-50%);
+      background: rgba(201,168,76,0.95);
+      color: #0f1a30;
       border: none; border-radius: 20px;
       padding: 7px 18px; font-size: 13px; font-weight: 700;
       cursor: pointer; opacity: 0; transition: opacity 0.2s;
       white-space: nowrap; text-decoration: none;
     }
     .alon-card:hover .alon-download-btn { opacity: 1; }
+
     .alon-card-info {
-      padding: 14px 16px 16px;
+      padding: 12px 14px 14px;
     }
     .alon-card-info h4 {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 15px; color: var(--navy);
-      margin-bottom: 5px; font-weight: 700;
+      font-size: 14px; color: var(--navy);
+      margin-bottom: 4px; font-weight: 700;
+      line-height: 1.4;
     }
     .alon-card-info span {
       font-size: 12px; color: var(--text-light);
     }
+
+    /* ── סרגל חיפוש ── */
     .alonot-controls {
       display: flex; align-items: center; gap: 12px;
       margin-bottom: 28px; flex-wrap: wrap;
@@ -87,6 +112,8 @@
       outline: none;
     }
     .alon-count { font-size: 13px; color: var(--text-light); }
+
+    /* ── states ── */
     .alonot-loading, .alonot-error, .alonot-empty {
       text-align: center; padding: 50px; color: var(--text-light);
       grid-column: 1 / -1;
@@ -101,6 +128,7 @@
     }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── intro ── */
     .alonot-intro {
       max-width: 780px;
       margin: 0 auto 52px;
@@ -108,40 +136,14 @@
     }
     .alonot-intro h2 {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 28px;
-      color: var(--navy);
-      margin-bottom: 14px;
-      font-weight: 700;
+      font-size: 28px; color: var(--navy);
+      margin-bottom: 14px; font-weight: 700;
     }
     .alonot-intro p {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.85;
+      font-size: 15px; color: var(--text-light); line-height: 1.85;
     }
 
-    .drive-wrap {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 10px;
-      box-shadow: 0 4px 30px rgba(58,42,16,0.1);
-      border: 1px solid rgba(201,168,76,0.2);
-      margin-bottom: 52px;
-      overflow: hidden;
-    }
-    .drive-wrap iframe {
-      width: 100%;
-      height: 620px;
-      border: none;
-      border-radius: 14px;
-      display: block;
-    }
-
-    .drive-cta {
-      text-align: center;
-      margin-bottom: 60px;
-    }
-    .drive-cta p { color: var(--text-light); font-size: 14px; margin-bottom: 16px; }
-
+    /* ── info cards ── */
     .about-alonot {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -158,13 +160,12 @@
     .alon-info-card .icon { font-size: 28px; margin-bottom: 14px; }
     .alon-info-card h4 {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 17px;
-      color: var(--navy);
-      margin-bottom: 8px;
-      font-weight: 700;
+      font-size: 17px; color: var(--navy);
+      margin-bottom: 8px; font-weight: 700;
     }
     .alon-info-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
 
+    /* ── newsletter ── */
     .newsletter-signup {
       background: var(--navy-dark);
       border-radius: 20px;
@@ -174,20 +175,17 @@
     }
     .newsletter-signup h3 {
       font-family: 'Frank Ruhl Libre', serif;
-      font-size: 24px;
-      color: var(--gold-light);
+      font-size: 24px; color: var(--gold-light);
       margin-bottom: 12px;
     }
     .newsletter-signup p {
       color: rgba(255,255,255,0.65);
-      font-size: 15px;
-      margin-bottom: 28px;
-      line-height: 1.7;
+      font-size: 15px; margin-bottom: 28px; line-height: 1.7;
     }
 
     @media (max-width: 768px) {
-      .drive-wrap iframe { height: 420px; }
       .newsletter-signup { padding: 28px 20px; }
+      .alonot-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 16px; }
     }
   </style>
 </head>
@@ -243,7 +241,6 @@
         </p>
       </div>
 
-      <!-- סרגל חיפוש -->
       <div class="alonot-controls">
         <input class="alon-search" id="alonSearch" type="text" placeholder="🔍 חיפוש עלון..." oninput="filterAlonot()" />
         <span class="alon-count" id="alonCount"></span>
@@ -253,7 +250,6 @@
         </a>
       </div>
 
-      <!-- גריד עלונים -->
       <div class="alonot-grid" id="alonotGrid">
         <div class="alonot-loading" style="grid-column:1/-1">
           <div class="alonot-spinner"></div>
@@ -319,66 +315,111 @@
   // ════════════════════════════════════════
   //  עלונים – טעינה מ-Google Sheets
   //  עמודות הגיליון: title | dateHeb | imageUrl | downloadUrl | description
+  //  imageUrl – אופציונלי. אם ריק, מוצג thumbnail אוטומטי מ-Drive לפי downloadUrl
   // ════════════════════════════════════════
   const ALONOT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=1597495033&single=true&output=csv';
 
   let ALL_ALONOT = [];
 
+  // ── פרסור CSV עם תמיכה ב-escaped quotes ──
   function parseCSVLine(line) {
-    const r=[]; let c='',q=false;
-    for(let i=0;i<line.length;i++){
-      const ch=line[i];
-      if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++;}else q=!q;}
-      else if(ch===','&&!q){r.push(c);c='';}
-      else c+=ch;
+    const r = []; let c = '', q = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') {
+        if (q && line[i+1] === '"') { c += '"'; i++; }
+        else q = !q;
+      } else if (ch === ',' && !q) { r.push(c); c = ''; }
+      else c += ch;
     }
-    r.push(c); return r;
+    r.push(c);
+    return r;
   }
 
-  function toDirectImg(url) {
-    if (!url) return '';
-    const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-    if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=600&q=85';
-    return url;
+  // ── חילוץ Google Drive file ID מכל פורמט קישור ──
+  function extractDriveId(url) {
+    if (!url) return null;
+    const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/)
+           || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    return m ? m[1] : null;
+  }
+
+  // ── Thumbnail אוטומטי של Drive (עובד גם ל-PDF) ──
+  function toDriveThumbnail(url) {
+    const id = extractDriveId(url);
+    if (!id) return '';
+    return `https://drive.google.com/thumbnail?id=${id}&sz=w400`;
+  }
+
+  // ── קישור הורדה ישיר ──
+  function toDownloadUrl(url) {
+    const id = extractDriveId(url);
+    if (!id) return url;
+    return `https://drive.google.com/uc?export=download&id=${id}`;
+  }
+
+  // ── קישור פתיחה (צפייה בדפדפן) ──
+  function toViewUrl(url) {
+    const id = extractDriveId(url);
+    if (!id) return url;
+    return `https://drive.google.com/file/d/${id}/view`;
   }
 
   function filterAlonot() {
     const q = document.getElementById('alonSearch').value.trim().toLowerCase();
-    const filtered = q ? ALL_ALONOT.filter(a =>
-      (a.title+a.dateHeb+a.description).toLowerCase().includes(q)
-    ) : ALL_ALONOT;
+    const filtered = q
+      ? ALL_ALONOT.filter(a => (a.title + a.dateHeb + a.description).toLowerCase().includes(q))
+      : ALL_ALONOT;
     renderAlonot(filtered);
   }
 
   function renderAlonot(list) {
     const grid = document.getElementById('alonotGrid');
     document.getElementById('alonCount').textContent = list.length ? `${list.length} עלונים` : '';
+
     if (!list.length) {
       grid.innerHTML = '<div class="alonot-empty" style="grid-column:1/-1"><p>📭 לא נמצאו עלונים</p></div>';
       return;
     }
+
     grid.innerHTML = '';
+
     list.forEach((a, i) => {
       const card = document.createElement('div');
       card.className = 'alon-card';
       card.style.animationDelay = (i * 0.05) + 's';
-      const imgSrc = toDirectImg(a.imageUrl);
-      const thumb = imgSrc
-        ? `<img src="${imgSrc}" alt="${a.title}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" /><div class="alon-thumb-placeholder" style="display:none">📄</div>`
-        : `<div class="alon-thumb-placeholder">📄</div>`;
-      const dlBtn = a.downloadUrl
-        ? `<a class="alon-download-btn" href="${a.downloadUrl}" target="_blank">⬇ הורדה</a>`
+
+      // תמונה: מעדיפים imageUrl אם קיים, אחרת thumbnail אוטומטי מ-downloadUrl
+      const thumbSrc = a.imageUrl
+        ? toDriveThumbnail(a.imageUrl)
+        : toDriveThumbnail(a.downloadUrl);
+
+      const viewUrl  = toViewUrl(a.downloadUrl);
+      const dlUrl    = toDownloadUrl(a.downloadUrl);
+
+      const thumbHtml = thumbSrc
+        ? `<img src="${thumbSrc}" alt="${a.title}" loading="lazy"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+           <div class="alon-thumb-placeholder" style="display:none">📄<span>עלון PDF</span></div>`
+        : `<div class="alon-thumb-placeholder">📄<span>עלון PDF</span></div>`;
+
+      const dlBtn = dlUrl
+        ? `<a class="alon-download-btn" href="${dlUrl}" target="_blank"
+              onclick="event.stopPropagation()">⬇ הורדה</a>`
         : '';
+
       card.innerHTML = `
-        <div class="alon-thumb-wrap">${thumb}${dlBtn}</div>
+        <div class="alon-thumb-wrap">${thumbHtml}${dlBtn}</div>
         <div class="alon-card-info">
           <h4>${a.title}</h4>
           <span>📅 ${a.dateHeb}</span>
         </div>`;
-      if (a.downloadUrl) {
-        card.style.cursor = 'pointer';
-        card.addEventListener('click', () => window.open(a.downloadUrl, '_blank'));
+
+      // קליק על הכרטיסייה פותח לצפייה
+      if (viewUrl) {
+        card.addEventListener('click', () => window.open(viewUrl, '_blank'));
       }
+
       grid.appendChild(card);
     });
   }
@@ -386,25 +427,32 @@
   async function fetchAlonot() {
     try {
       const res = await fetch(ALONOT_CSV_URL + '&t=' + Date.now());
-      if (!res.ok) throw new Error();
+      if (!res.ok) throw new Error('fetch failed');
+
       const lines = (await res.text()).trim().split(/\r?\n/);
       ALL_ALONOT = lines.slice(1).map(l => {
         const c = parseCSVLine(l);
         return {
-          title:       (c[0]||'').trim(),
-          dateHeb:     (c[1]||'').trim(),
-          imageUrl:    (c[2]||'').trim(),
-          downloadUrl: (c[3]||'').trim(),
-          description: (c[4]||'').trim(),
+          title:       (c[0] || '').trim(),
+          dateHeb:     (c[1] || '').trim(),
+          imageUrl:    (c[2] || '').trim(),
+          downloadUrl: (c[3] || '').trim(),
+          description: (c[4] || '').trim(),
         };
       }).filter(a => a.title);
+
       renderAlonot(ALL_ALONOT);
       document.getElementById('alonCount').textContent = ALL_ALONOT.length + ' עלונים';
-    } catch {
+
+    } catch (err) {
+      console.error(err);
       document.getElementById('alonotGrid').innerHTML =
         `<div class="alonot-error" style="grid-column:1/-1">
            <p>⚠️ לא ניתן לטעון עלונים כרגע</p>
-           <a href="https://drive.google.com/drive/u/0/folders/1mXBax3uIPZt_JmNMb2jbm20YD1avDL6E" target="_blank" class="btn-primary" style="display:inline-block;margin-top:12px;">📁 לכל העלונים בדרייב ←</a>
+           <a href="https://drive.google.com/drive/u/0/folders/1mXBax3uIPZt_JmNMb2jbm20YD1avDL6E"
+              target="_blank" class="btn-primary" style="display:inline-block;margin-top:12px;">
+             📁 לכל העלונים בדרייב ←
+           </a>
          </div>`;
     }
   }
