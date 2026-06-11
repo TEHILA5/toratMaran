@@ -112,7 +112,22 @@
   .ask-form-box textarea::placeholder { color: rgba(255,255,255,0.3); }
   .ask-form-box input:focus,
   .ask-form-box select:focus,
-  .ask-form-box textarea:focus { border-color: rgba(201,168,76,0.6); }
+  .ask-form-box textarea:focus {
+    border-color: rgba(201,168,76,0.6);
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    outline: none;
+    /* override browser autofill yellow */
+    -webkit-text-fill-color: #fff;
+    box-shadow: 0 0 0 1000px rgba(255,255,255,0.08) inset;
+  }
+  .ask-form-box input:-webkit-autofill,
+  .ask-form-box input:-webkit-autofill:focus,
+  .ask-form-box textarea:-webkit-autofill {
+    -webkit-text-fill-color: #fff !important;
+    -webkit-box-shadow: 0 0 0 1000px #1a2d4a inset !important;
+    caret-color: #fff;
+  }
   .ask-form-box select option { background: #0f1a30; color: #fff; }
   .ask-form-box textarea { height: 120px; resize: vertical; }
   .ask-form-success {
@@ -1009,8 +1024,15 @@
 
   function toDirectImg(url) {
     if (!url) return '';
-    const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-    if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=300&q=85';
+    url = url.trim();
+    // /file/d/ID/view  or  /file/d/ID
+    const m1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (m1) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m1[1] + '&w=300&q=85';
+    // id=ID  (uc?id=...)
+    const m2 = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (m2) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m2[1] + '&w=300&q=85';
+    // plain URL (http/https) – use as-is via weserv to avoid CORS
+    if (url.startsWith('http')) return 'https://images.weserv.nl/?url=' + encodeURIComponent(url) + '&w=300&q=85';
     return url;
   }
 
