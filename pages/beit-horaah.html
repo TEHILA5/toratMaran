@@ -5,218 +5,598 @@
   <link rel="apple-touch-icon" href="../favicon.png" />
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>בית הוראה תורת מרן – שאלות הלכתיות | אלעד</title>
-<meta name="description" content="בית הוראה תורת מרן באלעד – פסיקת הלכה על פי שיטת מרן. שאלו שאלות בכשרות, שבת, טהרת המשפחה ועוד. מענה מהיר ומקצועי." />
-<meta name="keywords" content="בית הוראה אלעד, שאלות הלכה, פסיקת הלכה, שאל רב אלעד" />  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>בית הוראה תורת מרן – שאלות הלכתיות | אלעד</title>
+  <meta name="description" content="בית הוראה תורת מרן באלעד – פסיקת הלכה על פי שיטת מרן. שאלו שאלות בכשרות, שבת, טהרת המשפחה ועוד. מענה מהיר ומקצועי." />
+  <meta name="keywords" content="בית הוראה אלעד, שאלות הלכה, פסיקת הלכה, שאל רב אלעד" />
+  <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@300;400;500;700;900&family=Heebo:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="../css/style.css" />
-  <style>
-    .bh-section { padding: 70px 24px; }
-    .bh-intro {
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      gap: 48px;
-      margin-bottom: 60px;
-    }
-    .bh-intro-text h2 {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 30px;
-      color: var(--navy);
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
-    .bh-intro-text p {
-      font-size: 15px;
-      color: var(--text-light);
-      line-height: 1.9;
-      margin-bottom: 16px;
-    }
-    .contact-box {
-      background: var(--navy-dark);
-      border-radius: 16px;
-      padding: 30px 24px;
-      border: 1px solid rgba(201,168,76,0.25);
-      text-align: center;
-    }
-    .contact-box h3 {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 17px;
-      color: var(--gold-light);
-      margin-bottom: 20px;
-    }
-    .big-phone {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 32px;
-      color: var(--gold);
-      font-weight: 700;
-      margin-bottom: 8px;
-      display: block;
-      direction: ltr;
-    }
-    .phone-label { font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
-    .hours-list { margin-top: 16px; }
-    .hours-row {
-      display: flex;
-      justify-content: space-between;
-      padding: 8px 0;
-      border-bottom: 1px solid rgba(201,168,76,0.1);
-      font-size: 13px;
-    }
-    .hours-row:last-child { border-bottom: none; }
-    .hours-row .day { color: rgba(255,255,255,0.6); }
-    .hours-row .time { color: var(--gold-light); font-weight: 600; }
-
-    .areas-section {
-      background: var(--white);
-      border-radius: 20px;
-      padding: 48px 40px;
-      margin-bottom: 48px;
-      box-shadow: 0 4px 24px rgba(58,42,16,0.06);
-      border: 1px solid rgba(201,168,76,0.12);
-    }
-    .areas-section h3 {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 22px;
-      color: var(--navy);
-      margin-bottom: 28px;
-      text-align: center;
-    }
-    .areas-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 16px;
-    }
-    .area-card {
-      background: var(--cream);
-      border-radius: 10px;
-      padding: 20px 18px;
-      border-right: 4px solid var(--gold);
-    }
-    .area-card .icon { font-size: 24px; margin-bottom: 10px; }
-    .area-card h4 {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 16px;
-      color: var(--navy);
-      margin-bottom: 6px;
-      font-weight: 700;
-    }
-    .area-card p { font-size: 13px; color: var(--text-light); line-height: 1.6; }
-
-    .training-section {
-      background: var(--navy-dark);
-      border-radius: 20px;
-      padding: 44px 40px;
-      margin-bottom: 48px;
-      border: 1px solid rgba(201,168,76,0.2);
-    }
-    .training-section h3 {
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 22px;
-      color: var(--gold-light);
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .training-section p {
-      color: rgba(255,255,255,0.7);
-      font-size: 15px;
-      line-height: 1.85;
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 28px;
-    }
-    .training-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 16px;
-    }
-    .step {
-      background: rgba(255,255,255,0.05);
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      border: 1px solid rgba(201,168,76,0.15);
-    }
-    .step-num {
-      width: 36px; height: 36px;
-      background: var(--gold-dark);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Frank Ruhl Libre', serif;
-      font-size: 16px;
-      color: var(--navy-dark);
-      font-weight: 700;
-      margin: 0 auto 12px;
-    }
-    .step h4 { font-size: 14px; color: var(--gold-light); margin-bottom: 8px; font-family: 'Frank Ruhl Libre', serif; }
-    .step p { font-size: 12px; color: rgba(255,255,255,0.55); line-height: 1.6; }
-
-    @media (max-width: 768px) {
-      .bh-intro { grid-template-columns: 1fr; }
-      .areas-section, .training-section { padding: 28px 20px; }
-    }
-  </style>
 
   <style>
-  /* ══ PHOTO GALLERY SECTION ══ */
-  .photos-section {
-    padding: 70px 24px 80px;
-    background: #ffffff;
+  /* ════════════════════════════════
+     GENERAL PAGE LAYOUT
+  ════════════════════════════════ */
+  .bh-section { padding: 70px 24px; }
+
+  /* ════════════════════════════════
+     1. HERO CONTACT BOX (שאל את הרב)
+  ════════════════════════════════ */
+  .ask-rav-section {
+    background: var(--cream);
+    padding: 64px 24px 80px;
   }
-  .photos-grid {
+  .ask-rav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 56px;
+    align-items: start;
+  }
+  .ask-rav-info h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 32px;
+    color: var(--navy);
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+  .ask-rav-info p {
+    font-size: 15px;
+    color: var(--text-light);
+    line-height: 1.9;
+    margin-bottom: 20px;
+  }
+  .contact-channels { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+  .channel-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 14px 18px;
+    border: 1px solid rgba(201,168,76,0.2);
+    box-shadow: 0 2px 10px rgba(58,42,16,0.04);
+  }
+  .channel-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+  }
+  .channel-label { font-size: 12px; color: var(--text-light); margin-bottom: 2px; }
+  .channel-value { font-size: 15px; color: var(--navy); font-weight: 600; font-family: 'Frank Ruhl Libre', serif; }
+
+  /* Ask form */
+  .ask-form-box {
+    background: var(--navy-dark);
+    border-radius: 20px;
+    padding: 36px 32px;
+    border: 1px solid rgba(201,168,76,0.25);
+  }
+  .ask-form-box h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 22px;
+    color: var(--gold-light);
+    margin-bottom: 8px;
+    text-align: center;
+  }
+  .ask-form-box .form-sub {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .ask-form-box .form-group { margin-bottom: 16px; }
+  .ask-form-box label {
+    display: block;
+    font-size: 12px;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 6px;
+    font-family: 'Heebo', sans-serif;
+  }
+  .ask-form-box input,
+  .ask-form-box select,
+  .ask-form-box textarea {
+    width: 100%;
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #fff;
+    font-family: 'Heebo', sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .ask-form-box input::placeholder,
+  .ask-form-box textarea::placeholder { color: rgba(255,255,255,0.3); }
+  .ask-form-box input:focus,
+  .ask-form-box select:focus,
+  .ask-form-box textarea:focus { border-color: rgba(201,168,76,0.6); }
+  .ask-form-box select option { background: #0f1a30; color: #fff; }
+  .ask-form-box textarea { height: 120px; resize: vertical; }
+  .ask-form-success {
+    display: none;
+    background: rgba(201,168,76,0.12);
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+    color: var(--gold-light);
+    font-size: 14px;
+    margin-top: 16px;
+  }
+
+  /* ════════════════════════════════
+     2. BRANCHES (סניפים)
+  ════════════════════════════════ */
+  .branches-section {
+    padding: 70px 24px;
+    background: #fff;
+  }
+  .branches-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 20px;
     max-width: 1100px;
     margin: 0 auto;
   }
-  .photo-card {
-    border-radius: 14px;
-    overflow: hidden;
-    background: #0f1a30;
-    border: 1px solid rgba(201,168,76,0.2);
-    box-shadow: 0 2px 16px rgba(58,42,16,0.08);
-    cursor: pointer;
-    transition: transform 0.22s, box-shadow 0.22s;
-    animation: fadeInUp 0.5s ease both;
+  .branch-card {
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 26px 22px;
+    border: 1px solid rgba(201,168,76,0.18);
+    border-right: 4px solid var(--gold);
+    box-shadow: 0 2px 14px rgba(58,42,16,0.05);
+    animation: fadeUp 0.4s ease both;
   }
-  @keyframes fadeInUp {
-    from { opacity:0; transform:translateY(20px); }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(16px); }
     to   { opacity:1; transform:translateY(0); }
   }
-  .photo-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 40px rgba(58,42,16,0.16);
-    border-color: rgba(201,168,76,0.45);
+  .branch-card h4 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 18px;
+    color: var(--navy);
+    margin-bottom: 12px;
+    font-weight: 700;
   }
-  .photo-thumb {
-    width: 100%;
-    aspect-ratio: 4/3;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.35s;
-  }
-  .photo-card:hover .photo-thumb { transform: scale(1.04); }
-  .photo-info {
-    padding: 14px 16px 16px;
-    background: #fff;
-  }
-  .photo-info p {
-    font-size: 13px;
-    color: #6b5a3e;
-    margin: 0;
+  .branch-detail {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-light);
+    margin-bottom: 8px;
     line-height: 1.5;
+  }
+  .branch-detail .bi { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+
+  /* ════════════════════════════════
+     3. SHUOT GALLERY (שאלות ותשובות)
+  ════════════════════════════════ */
+  .shut-section {
+    padding: 70px 24px 80px;
+    background: var(--cream);
+  }
+  .shut-filters {
+    max-width: 1100px;
+    margin: 0 auto 32px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .shut-filter-btn {
+    background: #fff;
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 20px;
+    padding: 7px 18px;
+    font-size: 13px;
+    color: var(--navy);
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    transition: all 0.18s;
+  }
+  .shut-filter-btn.active,
+  .shut-filter-btn:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+    color: #fff;
+  }
+  .shut-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .shut-card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 24px 22px;
+    border: 1px solid rgba(201,168,76,0.15);
+    box-shadow: 0 2px 12px rgba(58,42,16,0.05);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+    animation: fadeUp 0.4s ease both;
+  }
+  .shut-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(58,42,16,0.1);
+    border-color: rgba(201,168,76,0.4);
+  }
+  .shut-cat {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-dark);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
     font-family: 'Heebo', sans-serif;
   }
-  /* Loading / empty states */
-  .photos-loading, .photos-empty {
+  .shut-q {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 16px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .shut-a {
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.75;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .shut-read-more {
+    font-size: 12px;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-top: 12px;
+    display: block;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  /* ShutModal */
+  .shut-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,18,35,0.72);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .shut-modal-overlay.open { display: flex; }
+  .shut-modal {
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 36px;
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(10,18,35,0.3);
+  }
+  .shut-modal-close {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+  }
+  .shut-modal .shut-cat { margin-bottom: 16px; }
+  .shut-modal-q {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 22px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+  .shut-modal-divider {
+    height: 2px;
+    background: linear-gradient(to left, var(--gold), transparent);
+    margin-bottom: 20px;
+  }
+  .shut-modal-a {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.9;
+    white-space: pre-wrap;
+  }
+
+  /* ════════════════════════════════
+     4. RABBIS LIST (רבני בית ההוראה)
+  ════════════════════════════════ */
+  .rabbis-section {
+    padding: 70px 24px 80px;
+    background: #fff;
+  }
+  .rabbis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .rabbi-card {
+    background: var(--cream);
+    border-radius: 18px;
+    padding: 28px 20px 22px;
     text-align: center;
-    padding: 50px;
-    color: #6b5a3e;
+    border: 1px solid rgba(201,168,76,0.15);
+    box-shadow: 0 2px 14px rgba(58,42,16,0.05);
+    animation: fadeUp 0.4s ease both;
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .rabbi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(58,42,16,0.1);
+  }
+  .rabbi-photo-wrap {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 16px;
+    border: 3px solid rgba(201,168,76,0.4);
+    background: var(--navy-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .rabbi-photo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .rabbi-photo-placeholder {
+    font-size: 34px;
+    color: rgba(201,168,76,0.6);
+    line-height: 1;
+  }
+  .rabbi-name {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 17px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .rabbi-titles {
+    font-size: 12px;
+    color: var(--text-light);
+    line-height: 1.7;
+  }
+  .rabbi-role {
+    display: inline-block;
+    background: rgba(201,168,76,0.12);
+    color: var(--gold-dark);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    margin-top: 10px;
+    font-family: 'Heebo', sans-serif;
+  }
+
+  /* ════════════════════════════════
+     5. ARTICLES (מאמרים)
+  ════════════════════════════════ */
+  .articles-section {
+    padding: 70px 24px 80px;
+    background: var(--cream);
+  }
+  .article-featured {
+    max-width: 1100px;
+    margin: 0 auto 48px;
+    background: #fff;
+    border-radius: 20px;
+    padding: 40px 40px 36px;
+    border: 1px solid rgba(201,168,76,0.18);
+    box-shadow: 0 4px 24px rgba(58,42,16,0.07);
+    position: relative;
+    overflow: hidden;
+  }
+  .article-featured::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 6px;
+    height: 100%;
+    background: var(--gold);
+  }
+  .article-meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .article-author-photo {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid rgba(201,168,76,0.4);
+    flex-shrink: 0;
+    background: var(--navy-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .article-author-photo img { width:100%; height:100%; object-fit:cover; object-position:top; }
+  .article-author-placeholder { font-size: 20px; color: rgba(201,168,76,0.6); }
+  .article-author-info { flex: 1; }
+  .article-author-name {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: 700;
+  }
+  .article-date { font-size: 12px; color: var(--text-light); margin-top: 2px; font-family: 'Heebo', sans-serif; }
+  .article-featured h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 26px;
+    color: var(--navy);
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.45;
+  }
+  .article-body {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.95;
+    white-space: pre-wrap;
+  }
+  .article-body.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .article-expand-btn {
+    background: none;
+    border: none;
+    color: var(--gold-dark);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 12px 0 0;
+    font-family: 'Heebo', sans-serif;
+    display: block;
+  }
+
+  /* article archive grid */
+  .articles-archive {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .articles-archive h3 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 20px;
+    color: var(--navy);
+    margin-bottom: 20px;
+    font-weight: 700;
+  }
+  .articles-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+  .article-mini-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 18px 18px 16px;
+    border: 1px solid rgba(201,168,76,0.14);
+    cursor: pointer;
+    transition: transform 0.18s, box-shadow 0.18s, border-color 0.18s;
+    box-shadow: 0 2px 10px rgba(58,42,16,0.04);
+    animation: fadeUp 0.35s ease both;
+  }
+  .article-mini-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(58,42,16,0.09);
+    border-color: rgba(201,168,76,0.35);
+  }
+  .article-mini-card .mini-author {
+    font-size: 11px;
+    color: var(--gold-dark);
+    font-weight: 600;
+    font-family: 'Heebo', sans-serif;
+    margin-bottom: 6px;
+  }
+  .article-mini-card .mini-title {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 15px;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .article-mini-card .mini-date {
+    font-size: 11px;
+    color: var(--text-light);
+    font-family: 'Heebo', sans-serif;
+  }
+
+  /* article modal */
+  .article-modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(10,18,35,0.72);
+    z-index: 9000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  }
+  .article-modal-overlay.open { display: flex; }
+  .article-modal {
+    background: #fff;
+    border-radius: 20px;
+    padding: 44px 40px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 24px 80px rgba(10,18,35,0.3);
+  }
+  .article-modal-close {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text-light);
+    line-height: 1;
+  }
+  .article-modal h2 {
+    font-family: 'Frank Ruhl Libre', serif;
+    font-size: 24px;
+    color: var(--navy);
+    font-weight: 700;
+    margin: 20px 0 10px;
+    line-height: 1.45;
+  }
+  .article-modal .modal-body {
+    font-size: 15px;
+    color: var(--text);
+    line-height: 1.95;
+    white-space: pre-wrap;
+    margin-top: 20px;
+  }
+  .modal-divider {
+    height: 2px;
+    background: linear-gradient(to left, var(--gold), transparent);
+    margin: 16px 0;
+  }
+
+  /* Loading / empty states */
+  .loading-state, .empty-state, .error-state {
+    text-align: center;
+    padding: 48px 20px;
+    color: var(--text-light);
     font-size: 15px;
     grid-column: 1 / -1;
   }
-  .photos-spinner {
+  .loading-spinner {
     width: 36px; height: 36px;
     border: 3px solid rgba(201,168,76,0.2);
     border-top-color: #c9a84c;
@@ -225,50 +605,13 @@
     margin: 0 auto 14px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
-  /* Lightbox */
-  .photo-lightbox {
-    display: none; position: fixed; inset: 0;
-    background: rgba(10,16,32,0.95); z-index: 9999;
-    align-items: center; justify-content: center;
-    flex-direction: column; gap: 14px;
-  }
-  .photo-lightbox.open { display: flex; }
-  .photo-lightbox-img {
-    max-width: 90vw; max-height: 82vh;
-    border-radius: 10px;
-    box-shadow: 0 0 80px rgba(0,0,0,0.7);
-    object-fit: contain;
-  }
-  .photo-lightbox-caption {
-    color: rgba(255,255,255,0.75);
-    font-size: 14px;
-    font-family: 'Heebo', sans-serif;
-    text-align: center;
-    max-width: 600px;
-    padding: 0 16px;
-  }
-  .photo-lightbox-close {
-    position: fixed; top: 18px; left: 22px;
-    background: rgba(255,255,255,0.1);
-    color: #fff; font-size: 20px; border: none;
-    border-radius: 50%; width: 40px; height: 40px;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    transition: background 0.18s; z-index: 10000;
-  }
-  .photo-lightbox-close:hover { background: rgba(255,255,255,0.25); }
-  .photo-lightbox-nav {
-    position: fixed; top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.1); color: #fff;
-    border: none; font-size: 22px; width: 44px; height: 44px;
-    border-radius: 50%; cursor: pointer; display: flex;
-    align-items: center; justify-content: center;
-    transition: background 0.18s; z-index: 10000;
-  }
-  .photo-lightbox-nav:hover { background: rgba(201,168,76,0.3); }
-  .photo-lightbox-prev { right: 16px; }
-  .photo-lightbox-next { left: 16px; }
-  @media (max-width: 600px) {
-    .photos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width: 768px) {
+    .ask-rav-inner { grid-template-columns: 1fr; gap: 32px; }
+    .article-featured { padding: 28px 22px; }
+    .article-modal { padding: 32px 22px; }
+    .shut-modal { padding: 28px 20px; }
   }
   </style>
 </head>
@@ -310,234 +653,191 @@
 
   <div class="page-hero">
     <h1>בית הוראה "תורת מרן"</h1>
-    <p data-cms="bh_hero_sub">מענה הלכתי לציבור הרחב – שאלות טהרה וכל ענייני הלכה למעשה</p>
-  </div><button class="photo-lightbox-nav photo-lightbox-next" onclick="navLightbox(-1)">&#8250;</button>
+    <p>מענה הלכתי לציבור הרחב בעניינים של תורה והלכה למעשה, בטלפון ובפועל</p>
   </div>
 
-  <section class="bh-section">
-    <div class="container">
+  <!-- ══════════════════════════════════════════
+       1. שאל את הרב + פרטי קשר
+  ══════════════════════════════════════════ -->
+  <section class="ask-rav-section">
+    <div class="ask-rav-inner">
 
-      <div class="bh-intro">
-        <div class="bh-intro-text">
-          <h2 data-cms="bh_section_title">שאלות הלכה – אנחנו כאן</h2>
-          <p data-cms="beit_horaah_intro">
-            בית ההוראה "תורת מרן" הוקם במטרה לתת מענה הלכתי מהיר, ברור ומדויק לציבור הרחב
-            בכל ענייני הלכה למעשה – ובמיוחד בענייני טהרת המשפחה.
-          </p>
-          <p data-cms="bh_p2">
-            המורי הוראה בבית ההוראה פוסקים לאור שיטתו של מרן הרב עובדיה יוסף זצוק"ל, מתוך
-            שפה מכובדת, נגישה וברורה, תוך מיוחדת בענייני צניעות והלכה לאישה.
-          </p>
-          <p data-cms="bh_p3">
-            בית ההוראה משמש גם מסגרת הכשרה מעשית לאברכי הכולל – הם לומדים לפסוק מתוך
-            מגע ישיר עם שאלות אמיתיות מהשטח.
-          </p>
-          <p data-cms="bh_p4">
-            הציבור מוזמן לפנות בטלפון בשעות הפעילות, ולקבל מענה מיידי או להשאיר הודעה.
-          </p>
-        </div>
-
-        <div class="contact-box">
-          <h3>📞 שאלו אותנו</h3>
-          <span class="big-phone">03-313-7547</span>
-          <div class="phone-label" data-cms="bh_phone_label">קו ישיר לבית ההוראה</div>
-          <div class="hours-list">
-            <div class="hours-row"><span class="day">ראשון – חמישי</span><span class="time">9:00 – 18:00</span></div>
-            <div class="hours-row"><span class="day">ערב שישי</span><span class="time">9:00 – 13:00</span></div>
-            <div class="hours-row"><span class="day">שבת ומועד</span><span class="time">סגור</span></div>
-          </div>
-          <div style="margin-top:20px;">
-            <a href="contact.html" class="btn-primary" style="font-size:13px; padding: 10px 22px;">שליחת שאלה במייל ←</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="areas-section">
-        <h3 data-cms="bh_areas_title">תחומי הפסיקה</h3>
-        <div class="areas-grid">
-          <div class="area-card">
-            <div class="icon">🕯️</div>
-            <h4 data-cms="bh_area1_title">טהרת המשפחה</h4>
-            <p data-cms="bh_area1_text">שאלות נידה, הפסקה בטהרה, בדיקות, וכל ענייני טהרה לאישה.</p>
-          </div>
-          <div class="area-card">
-            <div class="icon">🥩</div>
-            <h4 data-cms="bh_area2_title">בשר ובישולים</h4>
-            <p data-cms="bh_area2_text">שאלות בישולי עכו"ם, בשר בחלב, תערובות ועוד.</p>
-          </div>
-          <div class="area-card">
-            <div class="icon">🕍</div>
-            <h4 data-cms="bh_area3_title">שבת ומועד</h4>
-            <p data-cms="bh_area3_text">שאלות מלאכות שבת, חגים, ספירת העומר, ועוד.</p>
-          </div>
-          <div class="area-card">
-            <div class="icon">💍</div>
-            <h4 data-cms="bh_area4_title">אישות ושידוכין</h4>
-            <p data-cms="bh_area4_text">שאלות אישות, גט, חליצה, ועוד ענייני חוזה ואישות.</p>
-          </div>
-          <div class="area-card">
-            <div class="icon">🍷</div>
-            <h4 data-cms="bh_area5_title">ברכות וסדר תפילה</h4>
-            <p data-cms="bh_area5_text">ברכות הנהנין, ברכות השבח, סדר קדוש, הבדלה ועוד.</p>
-          </div>
-          <div class="area-card">
-            <div class="icon">⚖️</div>
-            <h4 data-cms="bh_area6_title">כל שאלה הלכתית</h4>
-            <p data-cms="bh_area6_text">כל שאלה שנקראת בלבכם – אנחנו כאן לסייע.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="training-section">
-        <h3 data-cms="bh_training_title">הכשרת מורי הוראה</h3>
-        <p data-cms="bh_training_intro">
-          לצד המענה לציבור, בית ההוראה משמש מסגרת הכשרה מעשית לאברכים המתמחים בפסיקה.
-          תהליך ההכשרה כולל:
+      <div class="ask-rav-info">
+        <h2>שאלו שאלה הלכתית</h2>
+        <p data-cms="bh_ask_intro">
+          בית ההוראה "תורת מרן" עומד לרשות הציבור לכל שאלה הלכתית –
+          בכשרות, שבת ומועד, טהרת המשפחה, ברכות ועוד.
+          שאלתכם תגיע ישירות לרב בית ההוראה ותקבלו מענה בהקדם.
         </p>
-        <div class="training-steps">
-          <div class="step">
-            <div class="step-num">א</div>
-            <h4 data-cms="bh_step1_title">לימוד הלכה שיטתי</h4>
-            <p data-cms="bh_step1_text">עיון מעמיק בנושאי ההלכה הנדרשים להוראה בפועל.</p>
+        <div class="contact-channels">
+          <div class="channel-row">
+            <span class="channel-icon">📞</span>
+            <div>
+              <div class="channel-label">טלפון ישיר</div>
+              <div class="channel-value" style="direction:ltr;text-align:right;">03-313-7547</div>
+            </div>
           </div>
-          <div class="step">
-            <div class="step-num">ב</div>
-            <h4 data-cms="bh_step2_title">תרגול מעשי</h4>
-            <p data-cms="bh_step2_text">עמידה ליד הפוסק ולמידה מהשאלות הממשיות שמגיעות.</p>
+          <div class="channel-row">
+            <span class="channel-icon">🕐</span>
+            <div>
+              <div class="channel-label">שעות מענה</div>
+              <div class="channel-value">א'–ה' 9:00–18:00 | ו' 9:00–13:00</div>
+            </div>
           </div>
-          <div class="step">
-            <div class="step-num">ג</div>
-            <h4 data-cms="bh_step3_title">שיעורי פסיקה</h4>
-            <p data-cms="bh_step3_text">שיעורים שבועיים בכללי פסיקה ובדרכי ההוראה לדורנו.</p>
-          </div>
-          <div class="step">
-            <div class="step-num">ד</div>
-            <h4 data-cms="bh_step4_title">בחינת הוראה</h4>
-            <p data-cms="bh_step4_text">קבלת תעודת הוראה ומינוי רשמי לאחר השלמת ההכשרה.</p>
+          <div class="channel-row">
+            <span class="channel-icon">✉️</span>
+            <div>
+              <div class="channel-label">דוא"ל</div>
+              <div class="channel-value" style="font-size:13px;">toratmaran033137547@gmail.com</div>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div class="ask-form-box">
+        <h3>✉ שאל את הרב</h3>
+        <div class="form-sub">שאלתכם תשלח ישירות לרב בית ההוראה</div>
+        <form id="askRavForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="9ec4023c-e585-45e2-8955-ff626daed9d0" />
+          <input type="hidden" name="subject" value="שאלה הלכתית – בית ההוראה תורת מרן" />
+          <input type="hidden" name="from_name" value="בית הוראה תורת מרן" />
+          <input type="hidden" name="redirect" value="false" />
+          <div class="form-group">
+            <label>שם *</label>
+            <input type="text" name="name" placeholder="ישראל ישראלי" required />
+          </div>
+          <div class="form-group">
+            <label>טלפון (לחזרה)</label>
+            <input type="tel" name="phone" placeholder="050-0000000" />
+          </div>
+          <div class="form-group">
+            <label>נושא השאלה</label>
+            <select name="topic">
+              <option value="">בחרו נושא...</option>
+              <option>כשרות</option>
+              <option>שבת ומועד</option>
+              <option>טהרת המשפחה</option>
+              <option>ברכות ותפילה</option>
+              <option>אישות ושידוכין</option>
+              <option>אחר</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>השאלה *</label>
+            <textarea name="message" placeholder="פרטו את שאלתכם..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary form-submit" style="width:100%;">שלחו שאלה ←</button>
+          <div class="ask-form-success" id="askFormSuccess">✅ תודה! שאלתכם נשלחה. נחזור אליכם בהקדם.</div>
+        </form>
       </div>
 
     </div>
   </section>
 
-  <!-- ══ גלריית תמונות ══ -->
-  <section class="photos-section" id="photosSection" style="display:none">
-    <div class="container">
-      <div class="section-title">
+  <!-- ══════════════════════════════════════════
+       2. סניפי בית ההוראה
+  ══════════════════════════════════════════ -->
+  <section class="branches-section">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <div class="section-title" style="margin-bottom:36px;">
         <span class="ornament">❧</span>
-        <h2>גלריית תמונות</h2>
+        <h2>סניפי בית ההוראה</h2>
         <span class="ornament">❧</span>
       </div>
-      <div class="photos-grid" id="photosGrid">
-        <div class="photos-loading">
-          <div class="photos-spinner"></div>
-          <p>טוען תמונות...</p>
+      <div class="branches-grid" id="branchesGrid">
+        <div class="loading-state" style="grid-column:1/-1;">
+          <div class="loading-spinner"></div>
+          <p>טוען...</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Photo Lightbox -->
-  <div class="photo-lightbox" id="photoLightbox">
-    <button class="photo-lightbox-close" onclick="closeLightbox()">✕</button>
-    <button class="photo-lightbox-nav photo-lightbox-prev" onclick="navLightbox(1)">&#8249;</button>
-    <img class="photo-lightbox-img" id="lightboxImg" src="" alt="" />
-    <div class="photo-lightbox-caption" id="lightboxCaption"></div>
+  <!-- ══════════════════════════════════════════
+       3. גלריית שאלות ותשובות
+  ══════════════════════════════════════════ -->
+  <section class="shut-section">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <div class="section-title" style="margin-bottom:12px;">
+        <span class="ornament">❧</span>
+        <h2>שאלות ותשובות</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <p style="text-align:center;color:var(--text-light);font-size:14px;margin-bottom:28px;" data-cms="bh_shut_intro">
+        שאלות מעשיות שהגיעו לבית ההוראה ותשובותיהן – לתועלת הציבור
+      </p>
+      <div class="shut-filters" id="shutFilters">
+        <button class="shut-filter-btn active" onclick="filterShut(this,'')">הכל</button>
+      </div>
+      <div class="shut-grid" id="shutGrid">
+        <div class="loading-state">
+          <div class="loading-spinner"></div>
+          <p>טוען שאלות ותשובות...</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </div><!-- /photo-lightbox -->
+  <!-- ShutModal -->
+  <div class="shut-modal-overlay" id="shutModal" onclick="if(event.target===this)closeShutModal()">
+    <div class="shut-modal">
+      <button class="shut-modal-close" onclick="closeShutModal()">✕</button>
+      <span class="shut-cat" id="modalCat"></span>
+      <div class="shut-modal-q" id="modalQ"></div>
+      <div class="shut-modal-divider"></div>
+      <div class="shut-modal-a" id="modalA"></div>
+    </div>
+  </div>
 
-  <script>
-  // ══ גלריית תמונות – beit-horaah ══
-  (function() {
-    const PAGE_KEY   = 'beit-horaah';
-    const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=294437223&single=true&output=csv';
-    let galleryItems = [];
-    let currentIdx   = 0;
+  <!-- ══════════════════════════════════════════
+       4. רבני בית ההוראה
+  ══════════════════════════════════════════ -->
+  <section class="rabbis-section">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <div class="section-title" style="margin-bottom:36px;">
+        <span class="ornament">❧</span>
+        <h2>רבני בית ההוראה</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="rabbis-grid" id="rabbisGrid">
+        <div class="loading-state" style="grid-column:1/-1;">
+          <div class="loading-spinner"></div>
+          <p>טוען...</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    function parseCSVLine(line) {
-      const r=[]; let c='',q=false;
-      for(let i=0;i<line.length;i++){
-        const ch=line[i];
-        if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++;}else q=!q;}
-        else if(ch===','&&!q){r.push(c);c='';}
-        else c+=ch;
-      }
-      r.push(c); return r;
-    }
+  <!-- ══════════════════════════════════════════
+       5. מאמרים ורעיונות
+  ══════════════════════════════════════════ -->
+  <section class="articles-section" id="articlesSection">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <div class="section-title" style="margin-bottom:36px;">
+        <span class="ornament">❧</span>
+        <h2>מאמרים ורעיונות</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <!-- Featured article (most recent) -->
+      <div id="articleFeatured"></div>
+      <!-- Archive -->
+      <div class="articles-archive" id="articlesArchive" style="display:none;">
+        <h3>גיליונות קודמים</h3>
+        <div class="articles-mini-grid" id="articlesMiniGrid"></div>
+      </div>
+    </div>
+  </section>
 
-    function toDirectUrl(url) {
-      const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
-      if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=900&q=85';
-      return url;
-    }
-
-    window.openLightboxPhoto = function(idx) {
-      currentIdx = idx;
-      const item = galleryItems[idx];
-      document.getElementById('lightboxImg').src = item.url;
-      document.getElementById('lightboxCaption').textContent = item.alt;
-      document.getElementById('photoLightbox').classList.add('open');
-    };
-    window.closeLightbox = function() {
-      document.getElementById('photoLightbox').classList.remove('open');
-    };
-    window.navLightbox = function(dir) {
-      currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length;
-      const item = galleryItems[currentIdx];
-      document.getElementById('lightboxImg').src = item.url;
-      document.getElementById('lightboxCaption').textContent = item.alt;
-    };
-    document.getElementById('photoLightbox').addEventListener('click', function(e){
-      if(e.target===this) closeLightbox();
-    });
-    document.addEventListener('keydown', function(e){
-      if(!document.getElementById('photoLightbox').classList.contains('open')) return;
-      if(e.key==='Escape') closeLightbox();
-      if(e.key==='ArrowRight') navLightbox(1);
-      if(e.key==='ArrowLeft') navLightbox(-1);
-    });
-
-    async function loadPhotos() {
-      try {
-        const res = await fetch(IMAGES_CSV + '&t=' + Date.now());
-        if (!res.ok) return;
-        const lines = (await res.text()).trim().split(/\r?\n/);
-        const rows = lines.slice(1)
-          .map(l => parseCSVLine(l))
-          .filter(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY && (c[1]||'').trim())
-          .sort((a,b) => parseInt(a[3]||99) - parseInt(b[3]||99));
-
-        if (!rows.length) return;
-
-        document.getElementById('photosSection').style.display = 'block';
-        const grid = document.getElementById('photosGrid');
-        grid.innerHTML = '';
-
-        galleryItems = rows.map(row => ({
-          url: toDirectUrl((row[1]||'').trim()),
-          alt: (row[2]||'').trim()
-        }));
-
-        galleryItems.forEach((item, i) => {
-          const card = document.createElement('div');
-          card.className = 'photo-card';
-          card.style.animationDelay = (i * 0.07) + 's';
-          card.innerHTML = '<img class="photo-thumb" src="' + item.url + '" alt="' + item.alt + '" loading="lazy"'
-            + ' onerror="this.closest(&apos;.photo-card&apos;).style.display=&apos;none&apos;" />'
-            + (item.alt ? '<div class="photo-info"><p>' + item.alt + '</p></div>' : '');
-          card.addEventListener('click', () => openLightboxPhoto(i));
-          grid.appendChild(card);
-        });
-      } catch(e) {
-        document.getElementById('photosSection').style.display = 'none';
-      }
-    }
-
-    loadPhotos();
-  })();
-  </script>
-  <script src="../cms.js"></script>
+  <!-- Article modal -->
+  <div class="article-modal-overlay" id="articleModal" onclick="if(event.target===this)closeArticleModal()">
+    <div class="article-modal">
+      <button class="article-modal-close" onclick="closeArticleModal()">✕</button>
+      <div class="article-meta" id="modalArticleMeta"></div>
+      <div class="modal-divider"></div>
+      <h2 id="modalArticleTitle"></h2>
+      <div class="modal-body" id="modalArticleBody"></div>
+    </div>
+  </div>
 
   <section class="quote-banner">
     <div class="container">
@@ -546,7 +846,9 @@
         <cite>– מסכת ברכות</cite>
       </blockquote>
     </div>
-  </section><footer class="site-footer">
+  </section>
+
+  <footer class="site-footer">
     <div class="container">
       <div class="footer-logo">בית המדרש תורת מרן</div>
       <p class="footer-tagline">מרכז תורני-הלכתי בעיר אלעד</p>
@@ -562,5 +864,306 @@
     </div>
   </footer>
 
+  <script>
+  // ════════════════════════════════════════════════════════
+  //  SHEETS URLs – החלף ב-gid הנכון של כל גיליון
+  // ════════════════════════════════════════════════════════
+  const BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub';
+
+  // גיליונות חדשים – יש להוסיף ל-Sheets ולעדכן את ה-gid
+  const BRANCHES_URL  = BASE + '?gid=114551120&single=true&output=csv';
+  const SHUT_URL      = BASE + '?gid=1970652546&single=true&output=csv';
+  const RABBIS_URL    = BASE + '?gid=1244672403&single=true&output=csv';
+  const ARTICLES_URL  = BASE + '?gid=730841801&single=true&output=csv';
+
+  // ── CSV Parser ──────────────────────────────────────────
+  function parseCSVLine(line) {
+    const r = []; let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { if (inQ && line[i+1]==='"'){cur+='"';i++;} else inQ=!inQ; }
+      else if (ch===',' && !inQ) { r.push(cur.trim()); cur=''; }
+      else cur += ch;
+    }
+    r.push(cur.trim());
+    return r;
+  }
+
+  async function fetchCSV(url) {
+    try {
+      const res = await fetch(url + '&t=' + Date.now());
+      if (!res.ok) return [];
+      const lines = (await res.text()).trim().split(/\r?\n/);
+      return lines.slice(1).map(l => parseCSVLine(l)).filter(r => r.some(c=>c));
+    } catch { return []; }
+  }
+
+  function toDirectImg(url) {
+    if (!url) return '';
+    const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=300&q=85';
+    return url;
+  }
+
+  function loading(el) {
+    el.innerHTML = '<div class="loading-state" style="grid-column:1/-1;"><div class="loading-spinner"></div><p>טוען...</p></div>';
+  }
+  function empty(el, msg) {
+    el.innerHTML = '<div class="empty-state" style="grid-column:1/-1;">'+msg+'</div>';
+  }
+
+  // ── 1. Ask-rav form ──────────────────────────────────────
+  document.getElementById('askRavForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('.form-submit');
+    btn.textContent = 'שולח...';
+    btn.disabled = true;
+    try {
+      const res = await fetch(this.action, {
+        method: 'POST',
+        body: new FormData(this),
+        headers: { Accept: 'application/json' }
+      });
+      const data = await res.json();
+      if (data.success) {
+        this.reset();
+        document.getElementById('askFormSuccess').style.display = 'block';
+      } else { alert('אירעה שגיאה. אנא נסו שוב.'); }
+    } catch { alert('אירעה שגיאה. אנא נסו שוב.'); }
+    btn.textContent = 'שלחו שאלה ←';
+    btn.disabled = false;
+  });
+
+  // ── 2. Branches ─────────────────────────────────────────
+  // עמודות Sheets: שם_סניף | כתובת | שעות | ראש_הסניף | הערה | סדר
+  async function loadBranches() {
+    const grid = document.getElementById('branchesGrid');
+    const rows = await fetchCSV(BRANCHES_URL);
+    if (!rows.length) {
+      // Fallback: show static placeholder
+      grid.innerHTML = `
+        <div class="branch-card">
+          <h4>📍 בית ר' יוסף קארו</h4>
+          <div class="branch-detail"><span class="bi">📌</span><span>רחוב קארו 3, אלעד</span></div>
+          <div class="branch-detail"><span class="bi">🕐</span><span>ראשון 20:00–20:45</span></div>
+          <div class="branch-detail"><span class="bi">👤</span><span>הרב שמעון ללוש שליט"א</span></div>
+        </div>
+        <div class="branch-card">
+          <h4>📍 ביכ"נ איגוד אברכים</h4>
+          <div class="branch-detail"><span class="bi">📌</span><span>רחוב רשב"ם 2, אלעד</span></div>
+          <div class="branch-detail"><span class="bi">🕐</span><span>חמישי 22:00–22:45 | ליל שבת 22:00–22:45</span></div>
+          <div class="branch-detail"><span class="bi">👤</span><span>הרב שמעון ללוש שליט"א</span></div>
+        </div>
+        <div class="branch-card">
+          <h4>📍 ביכ"נ בית יוסף</h4>
+          <div class="branch-detail"><span class="bi">📌</span><span>רחוב שמעון הצדיק 21, אלעד</span></div>
+          <div class="branch-detail"><span class="bi">🕐</span><span>שבת 15:15–16:30</span></div>
+          <div class="branch-detail"><span class="bi">👤</span><span>הרב שמעון ללוש שליט"א</span></div>
+        </div>`;
+      return;
+    }
+    rows.sort((a,b) => parseInt(a[5]||99) - parseInt(b[5]||99));
+    grid.innerHTML = rows.map((r,i) => `
+      <div class="branch-card" style="animation-delay:${i*0.07}s">
+        <h4>📍 ${r[0]||''}</h4>
+        ${r[1] ? `<div class="branch-detail"><span class="bi">📌</span><span>${r[1]}</span></div>` : ''}
+        ${r[2] ? `<div class="branch-detail"><span class="bi">🕐</span><span>${r[2]}</span></div>` : ''}
+        ${r[3] ? `<div class="branch-detail"><span class="bi">👤</span><span>${r[3]}</span></div>` : ''}
+        ${r[4] ? `<div class="branch-detail"><span class="bi">💬</span><span>${r[4]}</span></div>` : ''}
+      </div>`).join('');
+  }
+
+  // ── 3. ShutGallery ──────────────────────────────────────
+  // עמודות Sheets: קטגוריה | שאלה | תשובה | פעיל
+  let allShut = [];
+  let currentCat = '';
+
+  function filterShut(btn, cat) {
+    currentCat = cat;
+    document.querySelectorAll('.shut-filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderShut();
+  }
+
+  function renderShut() {
+    const grid = document.getElementById('shutGrid');
+    const list = currentCat ? allShut.filter(s => s.cat === currentCat) : allShut;
+    if (!list.length) { empty(grid, '📭 לא נמצאו שאלות ותשובות'); return; }
+    grid.innerHTML = list.map((s,i) => `
+      <div class="shut-card" style="animation-delay:${i*0.05}s" onclick="openShutModal(${allShut.indexOf(s)})">
+        <span class="shut-cat">${s.cat}</span>
+        <div class="shut-q">${s.q}</div>
+        <div class="shut-a">${s.a}</div>
+        <span class="shut-read-more">קרא תשובה מלאה ←</span>
+      </div>`).join('');
+  }
+
+  function openShutModal(idx) {
+    const s = allShut[idx];
+    document.getElementById('modalCat').textContent = s.cat;
+    document.getElementById('modalQ').textContent = s.q;
+    document.getElementById('modalA').textContent = s.a;
+    document.getElementById('shutModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeShutModal() {
+    document.getElementById('shutModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  async function loadShut() {
+    const grid = document.getElementById('shutGrid');
+    loading(grid);
+    const rows = await fetchCSV(SHUT_URL);
+    const active = rows.filter(r => {
+      const flag = (r[3]||'').replace(/[\u200B-\u200D\uFEFF\r]/g,'').trim();
+      return flag !== 'לא' && flag !== '0' && flag !== 'false';
+    });
+    if (!active.length) { empty(grid, '📭 לא נמצאו שאלות ותשובות עדיין'); return; }
+    allShut = active.map(r => ({ cat: r[0]||'כללי', q: r[1]||'', a: r[2]||'' }));
+
+    // Build category filters
+    const cats = [...new Set(allShut.map(s=>s.cat))];
+    const filtersEl = document.getElementById('shutFilters');
+    cats.forEach(cat => {
+      const btn = document.createElement('button');
+      btn.className = 'shut-filter-btn';
+      btn.textContent = cat;
+      btn.onclick = () => filterShut(btn, cat);
+      filtersEl.appendChild(btn);
+    });
+    renderShut();
+  }
+
+  // ── 4. Rabbis ───────────────────────────────────────────
+  // עמודות Sheets: שם | תארים | תפקיד | תמונה_url | סדר
+  async function loadRabbis() {
+    const grid = document.getElementById('rabbisGrid');
+    const rows = await fetchCSV(RABBIS_URL);
+    if (!rows.length) {
+      grid.innerHTML = `
+        <div class="rabbi-card">
+          <div class="rabbi-photo-wrap"><span class="rabbi-photo-placeholder">👤</span></div>
+          <div class="rabbi-name">הרב שמעון ללוש שליט"א</div>
+          <div class="rabbi-titles">ראש הכולל ובית ההוראה</div>
+          <span class="rabbi-role">ראש בית ההוראה</span>
+        </div>`;
+      return;
+    }
+    rows.sort((a,b) => parseInt(a[4]||99) - parseInt(b[4]||99));
+    grid.innerHTML = rows.map((r,i) => {
+      const photo = toDirectImg((r[3]||'').trim());
+      return `<div class="rabbi-card" style="animation-delay:${i*0.07}s">
+        <div class="rabbi-photo-wrap">
+          ${photo
+            ? `<img src="${photo}" alt="${r[0]}" onerror="this.parentElement.innerHTML='<span class=\\'rabbi-photo-placeholder\\'>👤</span>'" />`
+            : '<span class="rabbi-photo-placeholder">👤</span>'}
+        </div>
+        <div class="rabbi-name">${r[0]||''}</div>
+        ${r[1] ? `<div class="rabbi-titles">${r[1]}</div>` : ''}
+        ${r[2] ? `<span class="rabbi-role">${r[2]}</span>` : ''}
+      </div>`;
+    }).join('');
+  }
+
+  // ── 5. Articles ─────────────────────────────────────────
+  // עמודות Sheets: שם_רב | תאריך | כותרת | תוכן | פעיל | תמונה_url
+  let allArticles = [];
+
+  function openArticleModal(idx) {
+    const a = allArticles[idx];
+    document.getElementById('modalArticleMeta').innerHTML = buildArticleMeta(a);
+    document.getElementById('modalArticleTitle').textContent = a.title;
+    document.getElementById('modalArticleBody').textContent = a.body;
+    document.getElementById('articleModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeArticleModal() {
+    document.getElementById('articleModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function buildArticleMeta(a) {
+    const photo = toDirectImg(a.photo);
+    return `
+      <div class="article-author-photo">
+        ${photo
+          ? `<img src="${photo}" alt="${a.author}" onerror="this.parentElement.innerHTML='<span class=\\'article-author-placeholder\\'>👤</span>'" />`
+          : '<span class="article-author-placeholder">👤</span>'}
+      </div>
+      <div class="article-author-info">
+        <div class="article-author-name">${a.author}</div>
+        <div class="article-date">${a.date}</div>
+      </div>`;
+  }
+
+  async function loadArticles() {
+    const featuredEl = document.getElementById('articleFeatured');
+    const rows = await fetchCSV(ARTICLES_URL);
+    const active = rows.filter(r => {
+      const flag = (r[4]||'').replace(/[\u200B-\u200D\uFEFF\r]/g,'').trim();
+      return flag !== 'לא' && flag !== '0' && flag !== 'false';
+    });
+    if (!active.length) {
+      document.getElementById('articlesSection').style.display = 'none';
+      return;
+    }
+    allArticles = active.map(r => ({
+      author: r[0]||'',
+      date:   r[1]||'',
+      title:  r[2]||'',
+      body:   r[3]||'',
+      photo:  r[5]||''
+    }));
+
+    // Featured = most recent (first row)
+    const feat = allArticles[0];
+    let expanded = false;
+    featuredEl.innerHTML = `
+      <div class="article-featured">
+        <div class="article-meta">${buildArticleMeta(feat)}</div>
+        <h2>${feat.title}</h2>
+        <div class="article-body collapsed" id="featBody">${feat.body}</div>
+        <button class="article-expand-btn" id="featExpandBtn" onclick="toggleFeat()">קרא עוד ↓</button>
+      </div>`;
+
+    window.toggleFeat = function() {
+      expanded = !expanded;
+      document.getElementById('featBody').classList.toggle('collapsed', !expanded);
+      document.getElementById('featExpandBtn').textContent = expanded ? 'הסתר ↑' : 'קרא עוד ↓';
+    };
+
+    // Archive = rest
+    if (allArticles.length > 1) {
+      const archiveEl = document.getElementById('articlesArchive');
+      const miniGrid = document.getElementById('articlesMiniGrid');
+      archiveEl.style.display = 'block';
+      miniGrid.innerHTML = allArticles.slice(1).map((a,i) => `
+        <div class="article-mini-card" style="animation-delay:${i*0.06}s" onclick="openArticleModal(${i+1})">
+          <div class="mini-author">${a.author}</div>
+          <div class="mini-title">${a.title}</div>
+          <div class="mini-date">${a.date}</div>
+        </div>`).join('');
+    }
+  }
+
+  // ── Photo gallery (existing) ────────────────────────────
+  const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=294437223&single=true&output=csv';
+
+  // ── Keyboard close ──────────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      closeShutModal();
+      closeArticleModal();
+    }
+  });
+
+  // ── Init ────────────────────────────────────────────────
+  loadBranches();
+  loadShut();
+  loadRabbis();
+  loadArticles();
+  </script>
+  <script src="../cms.js"></script>
 </body>
 </html>
