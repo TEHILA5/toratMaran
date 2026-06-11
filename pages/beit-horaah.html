@@ -606,6 +606,87 @@
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
+  /* ════════════════════════════════
+     PHOTO GALLERY
+  ════════════════════════════════ */
+  .photos-section {
+    padding: 70px 24px 80px;
+    background: #ffffff;
+  }
+  .photos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+  }
+  .photo-card {
+    border-radius: 14px;
+    overflow: hidden;
+    background: #0f1a30;
+    border: 1px solid rgba(201,168,76,0.2);
+    box-shadow: 0 2px 16px rgba(58,42,16,0.08);
+    cursor: pointer;
+    transition: transform 0.22s, box-shadow 0.22s;
+    animation: fadeUp 0.5s ease both;
+  }
+  .photo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 40px rgba(58,42,16,0.16);
+    border-color: rgba(201,168,76,0.45);
+  }
+  .photo-thumb {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.35s;
+  }
+  .photo-card:hover .photo-thumb { transform: scale(1.04); }
+  .photo-info { padding: 14px 16px 16px; background: #fff; }
+  .photo-info p { font-size: 13px; color: #6b5a3e; margin: 0; line-height: 1.5; font-family: 'Heebo', sans-serif; }
+  .photos-loading, .photos-empty {
+    text-align: center; padding: 50px; color: #6b5a3e;
+    font-size: 15px; grid-column: 1 / -1;
+  }
+  .photos-spinner {
+    width: 36px; height: 36px;
+    border: 3px solid rgba(201,168,76,0.2);
+    border-top-color: #c9a84c;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 14px;
+  }
+  .photo-lightbox {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,16,32,0.95); z-index: 9999;
+    align-items: center; justify-content: center;
+    flex-direction: column; gap: 14px;
+  }
+  .photo-lightbox.open { display: flex; }
+  .photo-lightbox-img { max-width: 90vw; max-height: 82vh; border-radius: 10px; box-shadow: 0 0 80px rgba(0,0,0,0.7); object-fit: contain; }
+  .photo-lightbox-caption { color: rgba(255,255,255,0.75); font-size: 14px; font-family: 'Heebo', sans-serif; text-align: center; max-width: 600px; padding: 0 16px; }
+  .photo-lightbox-close {
+    position: fixed; top: 18px; left: 22px;
+    background: rgba(255,255,255,0.1); color: #fff; font-size: 20px;
+    border: none; border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    transition: background 0.18s; z-index: 10000;
+  }
+  .photo-lightbox-close:hover { background: rgba(255,255,255,0.25); }
+  .photo-lightbox-nav {
+    position: fixed; top: 50%; transform: translateY(-50%);
+    background: rgba(255,255,255,0.1); color: #fff;
+    border: none; font-size: 22px; width: 44px; height: 44px;
+    border-radius: 50%; cursor: pointer; display: flex;
+    align-items: center; justify-content: center;
+    transition: background 0.18s; z-index: 10000;
+  }
+  .photo-lightbox-nav:hover { background: rgba(201,168,76,0.3); }
+  .photo-lightbox-prev { right: 16px; }
+  .photo-lightbox-next { left: 16px; }
+  @media (max-width: 600px) {
+    .photos-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  }
+
   /* ════ RESPONSIVE ════ */
   @media (max-width: 768px) {
     .ask-rav-inner { grid-template-columns: 1fr; gap: 32px; }
@@ -839,6 +920,34 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════
+       גלריית תמונות
+  ══════════════════════════════════════════ -->
+  <section class="photos-section" id="photosSection" style="display:none;">
+    <div class="container" style="max-width:1100px;margin:0 auto;">
+      <div class="section-title" style="margin-bottom:32px;">
+        <span class="ornament">❧</span>
+        <h2>גלריית תמונות</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="photos-grid" id="photosGrid">
+        <div class="photos-loading">
+          <div class="photos-spinner"></div>
+          <p>טוען תמונות...</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Lightbox -->
+  <div class="photo-lightbox" id="photoLightbox">
+    <button class="photo-lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="photo-lightbox-nav photo-lightbox-prev" onclick="navLightbox(1)">&#8249;</button>
+    <img class="photo-lightbox-img" id="lightboxImg" src="" alt="" />
+    <div class="photo-lightbox-caption" id="lightboxCaption"></div>
+    <button class="photo-lightbox-nav photo-lightbox-next" onclick="navLightbox(-1)">&#8250;</button>
+  </div>
+
   <section class="quote-banner">
     <div class="container">
       <blockquote>
@@ -871,10 +980,10 @@
   const BASE = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub';
 
   // גיליונות חדשים – יש להוסיף ל-Sheets ולעדכן את ה-gid
-  const BRANCHES_URL  = BASE + '?gid=114551120&single=true&output=csv';
-  const SHUT_URL      = BASE + '?gid=1970652546&single=true&output=csv';
-  const RABBIS_URL    = BASE + '?gid=1244672403&single=true&output=csv';
-  const ARTICLES_URL  = BASE + '?gid=730841801&single=true&output=csv';
+  const BRANCHES_URL  = BASE + '?gid=BH_BRANCHES_GID&single=true&output=csv';
+  const SHUT_URL      = BASE + '?gid=BH_SHUT_GID&single=true&output=csv';
+  const RABBIS_URL    = BASE + '?gid=BH_RABBIS_GID&single=true&output=csv';
+  const ARTICLES_URL  = BASE + '?gid=BH_ARTICLES_GID&single=true&output=csv';
 
   // ── CSV Parser ──────────────────────────────────────────
   function parseCSVLine(line) {
@@ -1150,11 +1259,89 @@
   // ── Photo gallery (existing) ────────────────────────────
   const IMAGES_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=294437223&single=true&output=csv';
 
+  // ── Photo gallery ───────────────────────────────────────
+  (function() {
+    const PAGE_KEY = 'beit-horaah';
+    let galleryItems = [];
+    let currentIdx   = 0;
+
+    function parseCSVLinePh(line) {
+      const r=[]; let c='',q=false;
+      for(let i=0;i<line.length;i++){
+        const ch=line[i];
+        if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++;}else q=!q;}
+        else if(ch===','&&!q){r.push(c);c='';}
+        else c+=ch;
+      }
+      r.push(c); return r;
+    }
+
+    function toDirectUrlPh(url) {
+      const m = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+      if (m) return 'https://images.weserv.nl/?url=drive.google.com/uc%3Fexport%3Dview%26id%3D' + m[1] + '&w=900&q=85';
+      return url;
+    }
+
+    window.openLightboxPhoto = function(idx) {
+      currentIdx = idx;
+      const item = galleryItems[idx];
+      document.getElementById('lightboxImg').src = item.url;
+      document.getElementById('lightboxCaption').textContent = item.alt;
+      document.getElementById('photoLightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    };
+    window.closeLightbox = function() {
+      document.getElementById('photoLightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    };
+    window.navLightbox = function(dir) {
+      currentIdx = (currentIdx + dir + galleryItems.length) % galleryItems.length;
+      const item = galleryItems[currentIdx];
+      document.getElementById('lightboxImg').src = item.url;
+      document.getElementById('lightboxCaption').textContent = item.alt;
+    };
+    document.getElementById('photoLightbox').addEventListener('click', function(e){
+      if(e.target===this) closeLightbox();
+    });
+
+    async function loadPhotos() {
+      try {
+        const res = await fetch(IMAGES_CSV + '&t=' + Date.now());
+        if (!res.ok) return;
+        const lines = (await res.text()).trim().split(/\r?\n/);
+        const rows = lines.slice(1)
+          .map(l => parseCSVLinePh(l))
+          .filter(c => (c[0]||'').trim().toLowerCase() === PAGE_KEY && (c[1]||'').trim())
+          .sort((a,b) => parseInt(a[3]||99) - parseInt(b[3]||99));
+        if (!rows.length) return;
+        document.getElementById('photosSection').style.display = 'block';
+        const grid = document.getElementById('photosGrid');
+        grid.innerHTML = '';
+        galleryItems = rows.map(row => ({
+          url: toDirectUrlPh((row[1]||'').trim()),
+          alt: (row[2]||'').trim()
+        }));
+        galleryItems.forEach((item, i) => {
+          const card = document.createElement('div');
+          card.className = 'photo-card';
+          card.style.animationDelay = (i * 0.07) + 's';
+          card.innerHTML = '<img class="photo-thumb" src="' + item.url + '" alt="' + item.alt + '" loading="lazy"'
+            + ' onerror="this.closest(\'.photo-card\').style.display=\'none\'" />'
+            + (item.alt ? '<div class="photo-info"><p>' + item.alt + '</p></div>' : '');
+          card.addEventListener('click', () => openLightboxPhoto(i));
+          grid.appendChild(card);
+        });
+      } catch(e) { /* silent */ }
+    }
+    loadPhotos();
+  })();
+
   // ── Keyboard close ──────────────────────────────────────
   document.addEventListener('keydown', e => {
     if (e.key === 'Escape') {
       closeShutModal();
       closeArticleModal();
+      if (window.closeLightbox) closeLightbox();
     }
   });
 
