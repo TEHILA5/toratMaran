@@ -777,7 +777,7 @@
             <span class="channel-icon">🕐</span>
             <div>
               <div class="channel-label">שעות מענה</div>
-              <div class="channel-value">א'–ה' 9:00–18:00 | ו' 9:00–13:00</div>
+              <div class="channel-value" data-cms="bh_hours">א'–ה' 9:00–18:00 | ו' 9:00–13:00</div>
             </div>
           </div>
           <div class="channel-row">
@@ -1219,7 +1219,7 @@
     const a = allArticles[idx];
     document.getElementById('modalArticleMeta').innerHTML = buildArticleMeta(a);
     document.getElementById('modalArticleTitle').textContent = a.title;
-    document.getElementById('modalArticleBody').textContent = a.body;
+    document.getElementById('modalArticleBody').innerHTML = a.body;
     document.getElementById('articleModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
