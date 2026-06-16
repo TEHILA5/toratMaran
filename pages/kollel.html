@@ -456,6 +456,200 @@
     </div>
   </section>
 
+  <!-- ══ מקטע סרטונים ══ -->
+  <div id="seasonal-banner" style="display:none;"></div>
+
+  <style>
+    .kollel-videos-section { padding: 60px 24px; }
+    .kollel-videos-section:nth-of-type(even) { background: var(--cream); }
+  </style>
+
+  <!-- קטגוריה א: שיעורים מראש הכולל -->
+  <section class="shiurim-section kollel-videos-section" id="ksec-rosh">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:32px;">
+        <span class="ornament">❧</span>
+        <h2>שיעורים מראש הכולל</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="shiurim-grid" id="kgrid-rosh">
+        <div class="loading-state"><div class="loading-spinner"></div><p>טוען שיעורים...</p></div>
+      </div>
+      <div class="load-more-wrap" id="kmore-rosh" style="display:none;">
+        <button class="load-more-btn" onclick="kLoadMore('rosh')">הצג עוד ▾</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- קטגוריה ב: שיעורים מאברכי הכולל -->
+  <section class="shiurim-section kollel-videos-section" id="ksec-avrechim" style="background:var(--cream);">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:32px;">
+        <span class="ornament">❧</span>
+        <h2>שיעורים מאברכי הכולל</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="shiurim-grid" id="kgrid-avrechim">
+        <div class="loading-state"><div class="loading-spinner"></div><p>טוען שיעורים...</p></div>
+      </div>
+      <div class="load-more-wrap" id="kmore-avrechim" style="display:none;">
+        <button class="load-more-btn" onclick="kLoadMore('avrechim')">הצג עוד ▾</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- קטגוריה ג: שיחות ושיעורים שונים -->
+  <section class="shiurim-section kollel-videos-section" id="ksec-other">
+    <div class="container">
+      <div class="section-title" style="margin-bottom:32px;">
+        <span class="ornament">❧</span>
+        <h2>שיחות ושיעורים שונים</h2>
+        <span class="ornament">❧</span>
+      </div>
+      <div class="shiurim-grid" id="kgrid-other">
+        <div class="loading-state"><div class="loading-spinner"></div><p>טוען שיעורים...</p></div>
+      </div>
+      <div class="load-more-wrap" id="kmore-other" style="display:none;">
+        <button class="load-more-btn" onclick="kLoadMore('other')">הצג עוד ▾</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox לסרטוני הכולל -->
+  <div class="video-lightbox" id="kVideoLightbox">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="kCloseLightbox()">✕</button>
+      <iframe id="kLightboxFrame" src="" allowfullscreen></iframe>
+    </div>
+  </div>
+
+  <script>
+  // ══════════════════════════════════════════════════════
+  //  כולל אברכים – סרטונים
+  //  גיליון: "כולל-שיעורים" (חדש)
+  //  עמודות: A=title | B=lecturer | C=dateHeb | D=date | E=description | F=videoId | G=category
+  //  ערכי category: ראש-כולל | אברכים | שונות
+  //  יש להוסיף גיליון בשיטס ולהחליף את gid= בתחתית
+  // ══════════════════════════════════════════════════════
+  const KOLLEL_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=279216525&single=true&output=csv';
+
+  const K_INIT = 12, K_MORE = 8;
+  const KCATS = {
+    rosh:     { key: 'ראש-כולל', displayed: 0, filtered: [] },
+    avrechim: { key: 'אברכים',   displayed: 0, filtered: [] },
+    other:    { key: 'שונות',    displayed: 0, filtered: [] },
+  };
+
+  function kParseCSVLine(line) {
+    const r=[]; let c='',q=false;
+    for(let i=0;i<line.length;i++){
+      const ch=line[i];
+      if(ch==='"'){if(q&&line[i+1]==='"'){c+='"';i++;}else q=!q;}
+      else if(ch===','&&!q){r.push(c);c='';}
+      else c+=ch;
+    }
+    r.push(c); return r;
+  }
+
+  async function kFetch() {
+    try {
+      const res = await fetch(KOLLEL_CSV + '&t=' + Date.now());
+      if (!res.ok) throw new Error();
+      const lines = (await res.text()).trim().split('\n');
+      const rows = lines.slice(1).map(l => {
+        const c = kParseCSVLine(l);
+        const d = new Date((c[3]||'').trim());
+        const rawCat = (c[6]||'').trim();
+        let cat;
+        if (rawCat === 'ראש-כולל') cat = 'rosh';
+        else if (rawCat === 'אברכים') cat = 'avrechim';
+        else cat = 'other';
+        return {
+          title: (c[0]||'').trim(), lecturer: (c[1]||'').trim(),
+          dateHeb: (c[2]||'').trim(), date: isNaN(d) ? new Date(0) : d,
+          description: (c[4]||'').trim(), videoId: (c[5]||'').trim() || null, cat
+        };
+      }).filter(s => s.title);
+
+      ['rosh','avrechim','other'].forEach(catId => {
+        KCATS[catId].filtered = rows.filter(s => s.cat === catId).sort((a,b) => b.date - a.date);
+        KCATS[catId].displayed = 0;
+        kRenderCat(catId, true);
+      });
+    } catch {
+      ['rosh','avrechim','other'].forEach(catId => {
+        document.getElementById('kgrid-'+catId).innerHTML =
+          `<div class="error-state"><p>⚠️ לא ניתן לטעון שיעורים</p></div>`;
+      });
+    }
+  }
+
+  function kBuildCard(s) {
+    const vid = s.videoId
+      ? `<div class="video-container" onclick="kOpenLightbox('${s.videoId}')" style="cursor:pointer;">
+           <img src="https://img.youtube.com/vi/${s.videoId}/hqdefault.jpg"
+                style="position:absolute;top:0;right:0;width:100%;height:100%;object-fit:cover;" alt="" />
+           <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+                width:52px;height:52px;background:rgba(201,168,76,0.9);border-radius:50%;
+                display:flex;align-items:center;justify-content:center;font-size:20px;color:#0f1a30;">▶</div>
+         </div>`
+      : `<div class="video-container"><div class="video-placeholder"><span class="play-icon">▶</span><span>בקרוב</span></div></div>`;
+    const card = document.createElement('div');
+    card.className = 'shiur-card';
+    card.innerHTML = `${vid}
+      <div class="shiur-info">
+        <h3>${s.title}</h3>
+        <div class="meta-tags">
+          <span class="meta-tag">📅 ${s.dateHeb}</span>
+          <span class="meta-tag lecturer">👤 ${s.lecturer}</span>
+        </div>
+        <p>${s.description}</p>
+      </div>`;
+    return card;
+  }
+
+  function kRenderCat(catId, reset) {
+    const state = KCATS[catId];
+    const grid  = document.getElementById('kgrid-' + catId);
+    const moreWrap = document.getElementById('kmore-' + catId);
+    const section  = document.getElementById('ksec-'  + catId);
+    if (reset) grid.innerHTML = '';
+    if (!state.filtered.length) {
+      if (reset) grid.innerHTML = '<div class="empty-state"><p>📭 אין שיעורים בקטגוריה זו</p></div>';
+      moreWrap.style.display = 'none';
+      return;
+    }
+    section.style.display = '';
+    const batchSize = reset ? K_INIT : K_MORE;
+    const next = Math.min(state.displayed + batchSize, state.filtered.length);
+    state.filtered.slice(state.displayed, next).forEach((s, i) => {
+      const card = kBuildCard(s);
+      card.style.animationDelay = (i * 0.05) + 's';
+      grid.appendChild(card);
+    });
+    state.displayed = next;
+    const rem = state.filtered.length - state.displayed;
+    moreWrap.style.display = rem > 0 ? 'flex' : 'none';
+    if (rem > 0) moreWrap.querySelector('button').textContent = `הצג עוד ${Math.min(rem, K_MORE)} ▾`;
+  }
+
+  function kLoadMore(catId) {
+    kRenderCat(catId, false);
+  }
+
+  function kOpenLightbox(id) {
+    document.getElementById('kLightboxFrame').src = 'https://www.youtube.com/embed/'+id+'?autoplay=1';
+    document.getElementById('kVideoLightbox').classList.add('open');
+  }
+  function kCloseLightbox() {
+    document.getElementById('kLightboxFrame').src = '';
+    document.getElementById('kVideoLightbox').classList.remove('open');
+  }
+  document.getElementById('kVideoLightbox').addEventListener('click', function(e){ if(e.target===this) kCloseLightbox(); });
+
+  kFetch();
+  </script>
+
   <!-- ══ גלריית תמונות ══ -->
   <section class="photos-section" id="photosSection" style="display:none">
     <div class="container">
