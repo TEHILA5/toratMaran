@@ -130,6 +130,27 @@
   }
   .ask-form-box select option { background: #0f1a30; color: #fff; }
   .ask-form-box textarea { height: 120px; resize: vertical; }
+  .ask-form-box input[type="file"] {
+    padding: 8px 10px;
+    cursor: pointer;
+  }
+  .ask-form-box input[type="file"]::-webkit-file-upload-button {
+    background: var(--gold-light);
+    color: #1a2d4a;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    margin-inline-end: 10px;
+    cursor: pointer;
+    font-family: 'Heebo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .image-upload-hint {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    margin-top: 6px;
+  }
   .ask-form-success {
     display: none;
     background: rgba(201,168,76,0.12);
@@ -798,6 +819,7 @@
           <input type="hidden" name="subject" value="שאלה הלכתית – בית ההוראה תורת מרן" />
           <input type="hidden" name="from_name" value="בית הוראה תורת מרן" />
           <input type="hidden" name="redirect" value="false" />
+          <input type="hidden" name="image_url" id="askImageUrl" />
           <div class="form-group">
             <label>שם *</label>
             <input type="text" name="name" placeholder="ישראל ישראלי" required />
@@ -825,6 +847,11 @@
           <div class="form-group">
             <label>השאלה *</label>
             <textarea name="message" placeholder="פרטו את שאלתכם..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label>תמונה לשאלה (אופציונלי)</label>
+            <input type="file" id="askImageInput" accept="image/*" />
+            <div class="image-upload-hint">ניתן לצרף תמונה רלוונטית לשאלה (עד 5MB)</div>
           </div>
           <button type="submit" class="btn-primary form-submit" style="width:100%;">שלחו שאלה ←</button>
           <div class="ask-form-success" id="askFormSuccess">✅ תודה! שאלתכם נשלחה. נחזור אליכם בהקדם.</div>
@@ -1004,6 +1031,25 @@
   const RABBIS_URL    = BASE + '?gid=1244672403&single=true&output=csv';
   const ARTICLES_URL  = BASE + '?gid=730841801&single=true&output=csv';
 
+  // ════════════════════════════════════════════════════════
+  //  Cloudinary – העלאת תמונות מטופס "שאל את הרב"
+  // ════════════════════════════════════════════════════════
+  const CLOUDINARY_CLOUD_NAME = 'dccmqohd8';
+  const CLOUDINARY_UPLOAD_PRESET = 'beit-horaah-form';
+
+  async function uploadImageToCloudinary(file) {
+    const fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+    const res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+      method: 'POST',
+      body: fd
+    });
+    if (!res.ok) throw new Error('Cloudinary upload failed');
+    const data = await res.json();
+    return data.secure_url;
+  }
+
   // ── CSV Parser ──────────────────────────────────────────
   function parseCSVLine(line) {
     const r = []; let cur = '', inQ = false;
@@ -1050,28 +1096,54 @@
   // ── 1. Ask-rav form ──────────────────────────────────────
   document.getElementById('askRavForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    const btn = this.querySelector('.form-submit');
-    btn.textContent = 'שולח...';
+    const form = this;
+    const btn = form.querySelector('.form-submit');
+    const imageInput = document.getElementById('askImageInput');
+    const imageUrlField = document.getElementById('askImageUrl');
+
     btn.disabled = true;
+
+    // אם נבחרה תמונה – מעלים אותה ל-Cloudinary לפני שליחת הטופס
+    if (imageInput && imageInput.files && imageInput.files[0]) {
+      const file = imageInput.files[0];
+      if (file.size > 5 * 1024 * 1024) {
+        alert('התמונה גדולה מ-5MB. אנא בחרו תמונה קטנה יותר.');
+        btn.disabled = false;
+        return;
+      }
+      btn.textContent = 'מעלה תמונה...';
+      try {
+        imageUrlField.value = await uploadImageToCloudinary(file);
+      } catch (err) {
+        alert('העלאת התמונה נכשלה. ניתן לנסות שוב או לשלוח בלי תמונה.');
+        btn.textContent = 'שלחו שאלה ←';
+        btn.disabled = false;
+        return;
+      }
+    }
+
+    btn.textContent = 'שולח...';
+
     // הוסף replyto כדי שהשב במייל יחזור לשואל
-    const emailVal = this.querySelector('input[name="email"]').value;
-    let replyInput = this.querySelector('input[name="replyto"]');
+    const emailVal = form.querySelector('input[name="email"]').value;
+    let replyInput = form.querySelector('input[name="replyto"]');
     if (!replyInput) {
       replyInput = document.createElement('input');
       replyInput.type = 'hidden';
       replyInput.name = 'replyto';
-      this.appendChild(replyInput);
+      form.appendChild(replyInput);
     }
     replyInput.value = emailVal;
+
     try {
-      const res = await fetch(this.action, {
+      const res = await fetch(form.action, {
         method: 'POST',
-        body: new FormData(this),
+        body: new FormData(form),
         headers: { Accept: 'application/json' }
       });
       const data = await res.json();
       if (data.success) {
-        this.reset();
+        form.reset();
         document.getElementById('askFormSuccess').style.display = 'block';
       } else { alert('אירעה שגיאה. אנא נסו שוב.'); }
     } catch { alert('אירעה שגיאה. אנא נסו שוב.'); }
