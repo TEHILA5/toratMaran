@@ -1219,7 +1219,7 @@
     const s = allShut[idx];
     document.getElementById('modalCat').textContent = s.cat;
     document.getElementById('modalQ').textContent = s.q;
-    document.getElementById('modalA').textContent = s.a;
+    document.getElementById('modalA').innerHTML = s.a;
     document.getElementById('shutModal').classList.add('open');
     document.body.style.overflow = 'hidden';
   }
