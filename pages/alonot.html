@@ -439,7 +439,7 @@
           downloadUrl: (c[3] || '').trim(),
           description: (c[4] || '').trim(),
         };
-      }).filter(a => a.title);
+      }).filter(a => a.title).reverse();
 
       renderAlonot(ALL_ALONOT);
       document.getElementById('alonCount').textContent = ALL_ALONOT.length + ' עלונים';
