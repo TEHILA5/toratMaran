@@ -165,29 +165,6 @@
     }
     .alon-info-card p { font-size: 13px; color: var(--text-light); line-height: 1.7; }
 
-    .alon-show-more-wrap {
-      grid-column: 1 / -1;
-      display: flex;
-      justify-content: center;
-      margin-top: 8px;
-    }
-    .alon-show-more-btn {
-      background: transparent;
-      border: 1.5px solid var(--gold);
-      color: var(--navy);
-      border-radius: 24px;
-      padding: 10px 28px;
-      font-family: 'Heebo', sans-serif;
-      font-size: 14px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-    .alon-show-more-btn:hover {
-      background: var(--gold);
-      color: #0f1a30;
-    }
-
     /* ── newsletter ── */
     .newsletter-signup {
       background: var(--navy-dark);
@@ -343,9 +320,6 @@
   const ALONOT_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS-o4pDAAROiApJOKr16R1hsAQuiH7ccgVjTMAn-ZsYzy0AW2-geNGnjv5qLjwx9sRQc_0GjUar5Hw9/pub?gid=1597495033&single=true&output=csv';
 
   let ALL_ALONOT = [];
-  let CURRENT_LIST = [];
-  const ALONOT_PAGE_SIZE = 10;
-  let visibleCount = ALONOT_PAGE_SIZE;
 
   // ── פרסור CSV עם תמיכה ב-escaped quotes ──
   function parseCSVLine(line) {
@@ -393,16 +367,10 @@
 
   function filterAlonot() {
     const q = document.getElementById('alonSearch').value.trim().toLowerCase();
-    CURRENT_LIST = q
+    const filtered = q
       ? ALL_ALONOT.filter(a => (a.title + a.dateHeb + a.description).toLowerCase().includes(q))
       : ALL_ALONOT;
-    visibleCount = ALONOT_PAGE_SIZE; // איפוס בכל חיפוש חדש
-    renderAlonot(CURRENT_LIST);
-  }
-
-  function showMoreAlonot() {
-    visibleCount += ALONOT_PAGE_SIZE;
-    renderAlonot(CURRENT_LIST);
+    renderAlonot(filtered);
   }
 
   function renderAlonot(list) {
@@ -414,11 +382,9 @@
       return;
     }
 
-    const visibleList = list.slice(0, visibleCount);
-
     grid.innerHTML = '';
 
-    visibleList.forEach((a, i) => {
+    list.forEach((a, i) => {
       const card = document.createElement('div');
       card.className = 'alon-card';
       card.style.animationDelay = (i * 0.05) + 's';
@@ -456,16 +422,6 @@
 
       grid.appendChild(card);
     });
-
-    if (list.length > visibleCount) {
-      const showMoreWrap = document.createElement('div');
-      showMoreWrap.className = 'alon-show-more-wrap';
-      showMoreWrap.innerHTML =
-        `<button class="alon-show-more-btn" onclick="showMoreAlonot()">
-           הצג עוד עלונים (${list.length - visibleCount} נוספים) ⬇
-         </button>`;
-      grid.appendChild(showMoreWrap);
-    }
   }
 
   async function fetchAlonot() {
@@ -485,8 +441,7 @@
         };
       }).filter(a => a.title).reverse();
 
-      CURRENT_LIST = ALL_ALONOT;
-      renderAlonot(CURRENT_LIST);
+      renderAlonot(ALL_ALONOT);
       document.getElementById('alonCount').textContent = ALL_ALONOT.length + ' עלונים';
 
     } catch (err) {
